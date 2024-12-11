@@ -4,7 +4,7 @@ local function bootstrap_pckr()
   if not (vim.uv or vim.loop).fs_stat(pckr_path) then
     vim.fn.system({
         'git',
-lang        'clone',
+        'clone',
         "--filter=blob:none",
         'https://github.com/lewis6991/pckr.nvim',
         pckr_path
