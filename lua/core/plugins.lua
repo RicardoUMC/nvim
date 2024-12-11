@@ -42,6 +42,7 @@ require('pckr').add{
 
   -- Buscador rápido
   { 'junegunn/fzf', run = vim.fn['fzf#install'] },
+  { 'neoclide/coc.nvim', branch = 'master', run = 'npm ci' },
 
   -- Otros plugins (puedes agregar más aquí)
   -- 'foo/bar.nvim';
