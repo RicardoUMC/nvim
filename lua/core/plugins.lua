@@ -39,7 +39,8 @@ require('pckr').add{
   'nvim-lualine/lualine.nvim',
   'nvim-treesitter/nvim-treesitter',
   'nvim-lua/plenary.nvim',
-  'nvim-telescope/telescope.nvim', tag = '0.1.8', 
+  'nvim-telescope/telescope.nvim', tag = '0.1.8',
+  'lewis6991/gitsigns.nvim',
 
   -- Buscador rápido
   { 'junegunn/fzf', run = vim.fn['fzf#install'] },
