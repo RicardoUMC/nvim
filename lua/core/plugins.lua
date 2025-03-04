@@ -18,7 +18,8 @@ bootstrap_pckr()
 
 require('pckr').add{
   -- Temas
-  'tinted-theming/base16-vim', 
+  --'tinted-theming/base16-vim', 
+  'tinted-theming/tinted-vim', 
 
   -- Plugins de interfaz
   'Yggdroot/indentLine',        -- Indentación visual
