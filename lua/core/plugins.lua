@@ -43,9 +43,11 @@ require('pckr').add{
   'lewis6991/gitsigns.nvim',
   'mbbill/undotree',
   'tpope/vim-fugitive',
-  {'neovim/nvim-lspconfig'},
-  {'hrsh7th/cmp-nvim-lsp'},
-  {'hrsh7th/nvim-cmp'},
+  'neovim/nvim-lspconfig',
+  'hrsh7th/cmp-nvim-lsp',
+  'hrsh7th/nvim-cmp',
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
 
   -- Buscador rápido
   { 'junegunn/fzf', run = vim.fn['fzf#install'] },
