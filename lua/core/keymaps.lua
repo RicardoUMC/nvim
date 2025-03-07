@@ -1,6 +1,3 @@
--- Configuración de tecla lider
-vim.g.mapleader = " "
-
 -- Mapeos personalizados
 vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-M-Left>", "<C-w>h", { noremap = true })
