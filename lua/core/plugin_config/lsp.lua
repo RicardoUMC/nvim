@@ -53,7 +53,7 @@ cmp.setup({
     ['<TAB>'] = cmp.mapping.select_next_item({behavior = 'select'}),
 
     -- `Enter` key to confirm completion
-    ['<S-CR>'] = cmp.mapping.confirm({select = false}),
+    ['<CR>'] = cmp.mapping.confirm({select = false}),
 
     -- Ctrl+Space to trigger completion menu
     ['<C-Space>'] = cmp.mapping.complete(),
