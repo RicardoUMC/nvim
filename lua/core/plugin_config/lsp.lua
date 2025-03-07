@@ -39,6 +39,8 @@ require('mason-lspconfig').setup({
   },
 })
 
+require'lspconfig'.clangd.setup{}
+
 local cmp = require('cmp')
 
 cmp.setup({
