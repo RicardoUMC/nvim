@@ -9,6 +9,7 @@ function ColorMyPencils(color)
 end
 
 vim.o.termguicolors = true
+vim.opt.termguicolors = true
 vim.g.tinted_background_transparent = 1
 
 ColorMyPencils()
