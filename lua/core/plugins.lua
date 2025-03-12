@@ -84,6 +84,7 @@ require('pckr').add {
     tag = '0.1.8',
     requires = { 'nvim-lua/plenary.nvim' }
   },
+  'nvim-telescope/telescope-ui-select.nvim',
 
   -- Treesitter para resaltado de sintaxis avanzado
   { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
