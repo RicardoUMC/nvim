@@ -1,6 +1,7 @@
 -- Tema y colores
 function ColorMyPencils(color)
     color = color or "base16-tokyo-city-terminal-dark"
+    --color = color or "base16-tokyo-night-moon"
     vim.cmd.colorscheme(color)
 
     -- optional for transparency
