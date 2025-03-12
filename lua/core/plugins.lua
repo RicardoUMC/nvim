@@ -16,42 +16,76 @@ end
 
 bootstrap_pckr()
 
-require('pckr').add{
+require('pckr').add {
   -- Temas
-  --'tinted-theming/base16-vim', 
-  'tinted-theming/tinted-vim', 
+  'tinted-theming/tinted-vim',
 
   -- Plugins de interfaz
-  'Yggdroot/indentLine',              -- Indentación visual
-  'vim-airline/vim-airline',          -- Barra de estado
-  'vim-airline/vim-airline-themes',   -- Temas para vim-airline
+  'Yggdroot/indentLine',
+  'vim-airline/vim-airline',
+  'vim-airline/vim-airline-themes',
+  'nvim-lualine/lualine.nvim',
 
   -- Plugins para productividad
-  'mattn/emmet-vim',                  -- Herramientas de diseño web
-  --'preservim/nerdtree',             -- Gestor de archivos en árbol
-  'christoomey/vim-tmux-navigator',   -- Navegación entre ventanas tmux
-  'jiangmiao/auto-pairs',             -- Autocompletado de paréntesis, llaves, etc.
-  'sheerun/vim-polyglot',             -- Soporte para múltiples lenguajes
-  'ThePrimeagen/vim-be-good',         -- Entrenamiento para comandos de Vim
-  'ThePrimeagen/harpoon',             -- Navegación de archivos
-  'nvim-tree/nvim-tree.lua',
-  'nvim-tree/nvim-web-devicons',
-  'nvim-lualine/lualine.nvim',
-  'nvim-treesitter/nvim-treesitter',
-  'nvim-lua/plenary.nvim',
-  'nvim-telescope/telescope.nvim', tag = '0.1.8',
+  'mattn/emmet-vim',
+  'christoomey/vim-tmux-navigator',
+  'jiangmiao/auto-pairs',
+  'sheerun/vim-polyglot',
+  'ThePrimeagen/vim-be-good',
+  'ThePrimeagen/harpoon',
+
+  -- Explorador de archivos
+  {
+    'nvim-tree/nvim-tree.lua',
+    requires = { 'nvim-tree/nvim-web-devicons' }
+  },
+
+  -- Soporte para Git
   'lewis6991/gitsigns.nvim',
-  'mbbill/undotree',
   'tpope/vim-fugitive',
+
+  -- Sistema de deshacer avanzado
+  'mbbill/undotree',
+
+  -- LSP y autocompletado
   'neovim/nvim-lspconfig',
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/nvim-cmp',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
 
+  -- Alpha (pantalla de inicio)
+  {
+    'goolord/alpha-nvim',
+    requires = {
+      'echasnovski/mini.icons',
+      'nvim-lua/plenary.nvim'
+    }
+  },
+
+  -- Explorador de archivos alternativo (Neo-tree)
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+      "3rd/image.nvim"
+    }
+  },
+
   -- Buscador rápido
   { 'junegunn/fzf', run = vim.fn['fzf#install'] },
 
-  -- Autocompletado
+  -- Telescope
+  {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.8',
+    requires = { 'nvim-lua/plenary.nvim' }
+  },
 
+  -- Treesitter para resaltado de sintaxis avanzado
+  { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 }
+
