@@ -48,11 +48,12 @@ require('pckr').add {
     'mbbill/undotree',
 
     -- LSP y autocompletado
-    'neovim/nvim-lspconfig',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/nvim-cmp',
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
+    'nvimtools/none-ls.nvim', -- Formatters & Linter
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/nvim-cmp',
 
     -- Alpha (pantalla de inicio)
     {
