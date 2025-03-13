@@ -4,7 +4,6 @@ vim.g.mapleader = " "
 vim.o.mouse = "a"
 
 -- Configuración básica
-vim.opt.termguicolors = true
 vim.opt.isfname:append("@-@")
 vim.opt.signcolumn = "yes"
 
