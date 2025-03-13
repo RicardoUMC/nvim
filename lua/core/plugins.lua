@@ -54,6 +54,13 @@ require("pckr").add({
 	"nvimtools/none-ls.nvim", -- Formatters & Linter
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/nvim-cmp",
+	{
+		"L3MON4D3/LuaSnip",
+		requires = {
+			"saadparwaiz1/cmp_luasnip",
+			"rafamadriz/friendly-snippets",
+		},
+	},
 
 	-- Alpha (pantalla de inicio)
 	{

@@ -1,6 +1,7 @@
 -- Configurar plugins
 require("core.plugin_config.alpha")
 require("core.plugin_config.colorscheme")
+require("core.plugin_config.completions")
 --require("core.plugin_config.coc")
 --require("core.plugin_config.nerdtree")
 require("core.plugin_config.airline")

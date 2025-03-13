@@ -1,26 +1,20 @@
 require("mason").setup({})
 
 require("mason-lspconfig").setup({
-	ensure_installed = { "lua_ls", "clangd" },
-	handlers = {
-		function(server_name)
-			require("lspconfig")[server_name].setup({})
-		end,
-	},
+	ensure_installed = { "lua_ls", "rust_analyzer" },
+	automatic_installation = true,
 })
 
--- Reserve a space in the gutter
--- This will avoid an annoying layout shift in the screen
-vim.opt.signcolumn = "yes"
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- Add cmp_nvim_lsp capabilities settings to lspconfig
--- This should be executed before you configure any language server
 local lspconfig = require("lspconfig")
-lspconfig.lua_ls.setup({})
-lspconfig.clangd.setup({})
+lspconfig.lua_ls.setup({
+	capabilities = capabilities,
+})
+lspconfig.rust_analyzer.setup({
+	capabilities = capabilities,
+})
 
--- This is where you enable features that only work
--- if there is a language server active in the file
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP actions",
 	callback = function(event)
@@ -36,32 +30,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
 		vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 	end,
-})
-
-local cmp = require("cmp")
-
-cmp.setup({
-	sources = {
-		{ name = "nvim_lsp" },
-	},
-	mapping = cmp.mapping.preset.insert({
-		-- Navigate between completion items
-		["<S-TAB>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
-		["<TAB>"] = cmp.mapping.select_next_item({ behavior = "select" }),
-
-		-- `Enter` key to confirm completion
-		["<CR>"] = cmp.mapping.confirm({ select = false }),
-
-		-- Ctrl+Space to trigger completion menu
-		["<C-Space>"] = cmp.mapping.complete(),
-
-		-- Scroll up and down in the completion documentation
-		["<C-u>"] = cmp.mapping.scroll_docs(-4),
-		["<C-d>"] = cmp.mapping.scroll_docs(4),
-	}),
-	snippet = {
-		expand = function(args)
-			vim.snippet.expand(args.body)
-		end,
-	},
 })

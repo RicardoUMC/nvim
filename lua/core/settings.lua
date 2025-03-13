@@ -6,6 +6,7 @@ vim.o.mouse = "a"
 -- Configuración básica
 vim.opt.termguicolors = true
 vim.opt.isfname:append("@-@")
+vim.opt.signcolumn = "yes"
 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
