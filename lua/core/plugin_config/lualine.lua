@@ -5,5 +5,6 @@ require('lualine').setup {
     theme = 'onedark'
     --theme = 'ayu_mirage'
     --theme = 'dracula'
+    --theme = 'horizon'
   }
 }
