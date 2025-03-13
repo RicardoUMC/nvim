@@ -11,7 +11,7 @@ local function bootstrap_pckr()
         })
     end
 
-  vim.opt.rtp:prepend(pckr_path)
+    vim.opt.rtp:prepend(pckr_path)
 end
 
 bootstrap_pckr()
