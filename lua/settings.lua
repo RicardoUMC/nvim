@@ -1,6 +1,3 @@
--- Configuración de tecla lider
-vim.g.mapleader = " "
-
 vim.o.mouse = "a"
 
 -- Configuración básica
