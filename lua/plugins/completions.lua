@@ -5,6 +5,9 @@ return {
             "saadparwaiz1/cmp_luasnip",
             "rafamadriz/friendly-snippets",
         },
+        config = function()
+            require("luasnip.loaders.from_vscode").lazy_load()
+        end,
     },
     {
         "hrsh7th/cmp-nvim-lsp",
@@ -12,8 +15,6 @@ return {
     {
         "hrsh7th/nvim-cmp",
         config = function()
-            --require("luasnip.loaders.from_vscode").lazy_load()
-
             local cmp = require("cmp")
             local luasnip = require("luasnip")
 
@@ -35,7 +36,7 @@ return {
                     ["<CR>"] = cmp.mapping.confirm({ select = false }),
                     ["<TAB>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
-                            cmp.select_next_item()
+                            cmp.select_next_item({ behavior = "select" })
                         elseif luasnip.expand_or_jumpable() then
                             luasnip.expand_or_jump()
                         else
@@ -44,7 +45,7 @@ return {
                     end, { "i", "s" }),
                     ["<S-TAB>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
-                            cmp.select_prev_item()
+                            cmp.select_prev_item({ behavior = "select" })
                         elseif luasnip.jumpable(-1) then
                             luasnip.jump(-1)
                         else
