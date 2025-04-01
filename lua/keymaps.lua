@@ -18,7 +18,7 @@ vim.keymap.set("n", "<leader>o", function()
     vim.api.nvim_feedkeys("o", "n", false)
     vim.defer_fn(function()
         vim.opt.formatoptions:remove("o")
-    end, 10)
+    end, 100)
 end, { desc = "Insert line below with comment" })
 
 vim.keymap.set("n", "<leader>O", function()
@@ -26,7 +26,7 @@ vim.keymap.set("n", "<leader>O", function()
     vim.api.nvim_feedkeys("O", "n", false)
     vim.defer_fn(function()
         vim.opt.formatoptions:remove("o")
-    end, 10)
+    end, 100)
 end, { desc = "Insert line above with comment" })
 
 -- Mapeos sugeridos
