@@ -1,9 +1,4 @@
-vim.api.nvim_create_autocmd("BufEnter", {
-    pattern = "*",
-    callback = function()
-        vim.opt.formatoptions:remove("o")
-    end,
-})
+vim.opt.formatoptions:remove("o")
 
 -- Mapeos personalizados
 vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true })
@@ -13,21 +8,15 @@ vim.api.nvim_set_keymap("n", "<C-M-Up>", "<C-w>k", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-M-Right>", "<C-w>l", { noremap = true })
 vim.api.nvim_set_keymap("n", "<A-a>", "ggVG", { noremap = true })
 
-vim.keymap.set("n", "<leader>o", function()
+local function insert_line_with_comment(key)
+    local current_format = vim.opt.formatoptions:get()
     vim.opt.formatoptions:append("o")
-    vim.api.nvim_feedkeys("o", "n", false)
-    vim.defer_fn(function()
-        vim.opt.formatoptions:remove("o")
-    end, 100)
-end, { desc = "Insert line below with comment" })
+    vim.api.nvim_feedkeys(key, "n", false)
+    vim.opt.formatoptions:set(current_format)
+end
 
-vim.keymap.set("n", "<leader>O", function()
-    vim.opt.formatoptions:append("o")
-    vim.api.nvim_feedkeys("O", "n", false)
-    vim.defer_fn(function()
-        vim.opt.formatoptions:remove("o")
-    end, 100)
-end, { desc = "Insert line above with comment" })
+vim.keymap.set("n", "<leader>o", function() insert_line_with_comment("o") end)
+vim.keymap.set("n", "<leader>O", function() insert_line_with_comment("O") end)
 
 -- Mapeos sugeridos
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
