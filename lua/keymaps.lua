@@ -1,4 +1,8 @@
-vim.opt.formatoptions:remove("o")
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Mapeos personalizados
 vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true })
@@ -8,15 +12,32 @@ vim.api.nvim_set_keymap("n", "<C-M-Up>", "<C-w>k", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-M-Right>", "<C-w>l", { noremap = true })
 vim.api.nvim_set_keymap("n", "<A-a>", "ggVG", { noremap = true })
 
-local function insert_line_with_comment(key)
-    local current_format = vim.opt.formatoptions:get()
-    vim.opt.formatoptions:append("o")
-    vim.api.nvim_feedkeys(key, "n", false)
-    vim.opt.formatoptions:set(current_format)
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "FileType" }, {
+  callback = function()
+    vim.opt_local.formatoptions:remove("o")
+  end,
+})
+
+local function insert_commented_line(below)
+    local commentstring = vim.bo.commentstring or "// %s"
+    local cs = commentstring:match("^(.*)%%s") or "//"
+    local indent = string.match(vim.api.nvim_get_current_line(), "^%s*") or ""
+    local commented_line = indent .. cs .. " "
+
+    local linenr = vim.api.nvim_win_get_cursor(0)[1]
+    if below then
+        vim.api.nvim_buf_set_lines(0, linenr, linenr, false, { commented_line })
+        vim.api.nvim_win_set_cursor(0, { linenr + 1, #commented_line })
+    else
+        vim.api.nvim_buf_set_lines(0, linenr - 1, linenr - 1, false, { commented_line })
+        vim.api.nvim_win_set_cursor(0, { linenr, #commented_line })
+    end
+
+    vim.cmd("startinsert")
 end
 
-vim.keymap.set("n", "<leader>o", function() insert_line_with_comment("o") end)
-vim.keymap.set("n", "<leader>O", function() insert_line_with_comment("O") end)
+vim.keymap.set("n", "<leader>o", function() insert_commented_line(true) end, { desc = "Insert commented line below" })
+vim.keymap.set("n", "<leader>O", function() insert_commented_line(false) end, { desc = "Insert commented line above" })
 
 -- Mapeos sugeridos
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
