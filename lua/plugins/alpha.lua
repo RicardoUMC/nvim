@@ -37,7 +37,7 @@ return {
 				dashboard.button("SPC p s", "󰈬  Find word"),
 				dashboard.button("SPC o s", "  Open session"),
 				dashboard.button("SPC l s", "  Open last session"),
-				dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
+				dashboard.button("u", "  Update plugins", "<cmd>Lazy update<CR>"),
 				dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
 			}
 
