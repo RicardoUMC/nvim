@@ -22,3 +22,5 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.updatetime = 50
+vim.o.timeout = true
+vim.o.timeoutlen = 100
