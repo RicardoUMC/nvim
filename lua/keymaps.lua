@@ -4,12 +4,26 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Mapeos personalizados
+-- Disable arrows
+vim.keymap.set("n", "<Up>", ":echoe 'Get off my lawn!'<CR>")
+vim.keymap.set("n", "<Down>", ":echoe 'Get off my lawn!'<CR>")
+vim.keymap.set("n", "<Left>", ":echoe 'Get off my lawn!'<CR>")
+vim.keymap.set("n", "<Right>", ":echoe 'Get off my lawn!'<CR>")
+vim.keymap.set("i", "<Up>", "<C-o>:echoe 'Get off my lawn!'<CR>")
+vim.keymap.set("i", "<Down>", "<C-o>:echoe 'Get off my lawn!'<CR>")
+vim.keymap.set("i", "<Left>", "<C-o>:echoe 'Get off my lawn!'<CR>")
+vim.keymap.set("i", "<Right>", "<C-o>:echoe 'Get off my lawn!'<CR>")
+vim.keymap.set("v", "<Up>", ":<C-u>echoe 'Get off my lawn!'<CR>")
+vim.keymap.set("v", "<Down>", ":<C-u>echoe 'Get off my lawn!'<CR>")
+vim.keymap.set("v", "<Left>", ":<C-u>echoe 'Get off my lawn!'<CR>")
+vim.keymap.set("v", "<Right>", ":<C-u>echoe 'Get off my lawn!'<CR>")
+
+-- Personalize mappings
 vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-M-Left>", "<C-w>h", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-M-Down>", "<C-w>j", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-M-Up>", "<C-w>k", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-M-Right>", "<C-w>l", { noremap = true })
+vim.api.nvim_set_keymap("n", "<M-C-Up>", "<C-w>h", { noremap = true })
+vim.api.nvim_set_keymap("n", "<M-C-Left>", "<C-w>j", { noremap = true })
+vim.api.nvim_set_keymap("n", "<M-C-Down>", "<C-w>k", { noremap = true })
+vim.api.nvim_set_keymap("n", "<M-C-Right>", "<C-w>l", { noremap = true })
 vim.api.nvim_set_keymap("n", "<A-a>", "ggVG", { noremap = true })
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "FileType" }, {
@@ -39,7 +53,7 @@ end
 vim.keymap.set("n", "<leader>o", function() insert_commented_line(true) end, { desc = "Insert commented line below" })
 vim.keymap.set("n", "<leader>O", function() insert_commented_line(false) end, { desc = "Insert commented line above" })
 
--- Mapeos sugeridos
+-- Suggested mappings
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
@@ -65,7 +79,7 @@ vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left>
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>")
 
 function CheckKeymapConflicts()
-    local modes = { "n", "i", "v", "x", "t" } -- Modos: normal, insert, visual, select, terminal
+    local modes = { "n", "i", "v", "x", "t" } -- Modes: normal, insert, visual, select, terminal
     local conflicts = {}
 
     for _, mode in ipairs(modes) do
