@@ -3,10 +3,19 @@ return {
         --"jiangmiao/auto-pairs",
     },
     {
+        "chrisgrieser/nvim-spider",
+        lazy = true,
+        keys = {
+            { "w", "<cmd>lua require('spider').motion('w')<CR>", mode = { "n", "o", "x" } },
+            { "e", "<cmd>lua require('spider').motion('e')<CR>", mode = { "n", "o", "x" } },
+            { "b", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "o", "x" } },
+        },
+    },
+    {
         "numToStr/Comment.nvim",
         opts = {
             padding = true,
-        }
+        },
     },
     {
         "kylechui/nvim-surround",
