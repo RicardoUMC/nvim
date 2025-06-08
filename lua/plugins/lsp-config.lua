@@ -3,6 +3,7 @@ return {
         "mason-org/mason-lspconfig.nvim",
         opts = {
             ensure_installed = { "lua_ls", "rust_analyzer", "clangd" },
+            automatic_installation = true,
         },
         dependencies = {
             {
@@ -27,6 +28,12 @@ return {
                         capabilities = lspconfig_defaults.capabilities,
                     })
                     lspconfig.clangd.setup({
+                        capabilities = lspconfig_defaults.capabilities,
+                    })
+                    lspconfig.marksman.setup({
+                        capabilities = lspconfig_defaults.capabilities,
+                    })
+                    lspconfig.markdown_oxide.setup({
                         capabilities = lspconfig_defaults.capabilities,
                     })
 
