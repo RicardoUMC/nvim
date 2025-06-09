@@ -42,6 +42,12 @@ return {
                         callback = function(event)
                             local opts = { buffer = event.buf }
 
+                            vim.lsp.inlay_hint.enable(true)
+                            vim.keymap.set("n", "<leader>th", function()
+                                local enabled = vim.lsp.inlay_hint.is_enabled()
+                                vim.lsp.inlay_hint.enable(not enabled)
+                            end, { desc = "Toggle inlay hints" })
+
                             vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
                             vim.keymap.set("n", ",gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
                             vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
@@ -49,7 +55,12 @@ return {
                             vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
                             vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
                             vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-                            vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
+                            vim.keymap.set(
+                                { "n", "x" },
+                                "<F3>",
+                                "<cmd>lua vim.lsp.buf.format({async = true})<cr>",
+                                opts
+                            )
                             vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
                         end,
                     })
@@ -58,3 +69,4 @@ return {
         },
     },
 }
+
