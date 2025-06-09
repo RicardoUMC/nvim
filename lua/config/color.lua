@@ -37,6 +37,10 @@ local function save_colorscheme(color)
     end
 end
 
+local function get_hl(name)
+    return vim.api.nvim_get_hl(0, { name = name, link = false }) or {}
+end
+
 function ColorMyPencils(color)
     color = color or read_colorscheme()
 
@@ -50,8 +54,39 @@ function ColorMyPencils(color)
     end
 
     -- Optional for transparecy
+    local visual = get_hl("Visual")
+    local cursorline = get_hl("CursorLine")
+    local comment = get_hl("Comment")
+    local funct = get_hl("Function")
+    local type = get_hl("Type")
+    local statement = get_hl("Statement")
+
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
+    vim.api.nvim_set_hl(0, "LspInlayHint", {
+        bg = cursorline.bg or visual.bg,
+        fg = comment.fg or visual.fg,
+        italic = true,
+    })
+
+    vim.api.nvim_set_hl(0, "Search", {
+        bg = type.fg,
+        fg = cursorline.bg or "#000000",
+        bold = true,
+    })
+
+    vim.api.nvim_set_hl(0, "IncSearch", {
+        bg = funct.fg or statement.fg or "#ff00ff",
+        fg = cursorline.bg or "#000000",
+        bold = true,
+    })
+
+    vim.api.nvim_set_hl(0, "CurSearch", {
+        bg = funct.fg or visual.fg or "#ff00ff",
+        fg = cursorline.bg,
+        bold = true,
+    })
 end
 
 vim.api.nvim_create_user_command("ChangeColorscheme", function(opts)
