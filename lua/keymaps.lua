@@ -63,6 +63,13 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+-- Toggle hlsearch con <leader>h
+vim.keymap.set("n", "<leader>h", function()
+    local current = vim.o.hlsearch
+    vim.o.hlsearch = not current
+    print("Highlight search " .. (vim.o.hlsearch and "enabled" or "disabled"))
+end, { desc = "Toggle search highlight" })
+
 vim.keymap.set("x", "<leader>p", '"_dp')
 
 vim.keymap.set("n", "<leader>y", '"+y')
