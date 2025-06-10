@@ -1,4 +1,4 @@
 require("keymaps")
 require("settings")
 require("config.lazy")
-require("config.color")
+require("config.color").apply()
