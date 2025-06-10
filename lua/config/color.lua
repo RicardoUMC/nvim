@@ -1,20 +1,5 @@
-local themes = {
-    cyberdream = "cyberdream",
-    horizon_dark = "base16-horizon-dark",
-    tokyo_city_terminal_dark = "base16-tokyo-city-terminal-dark",
-    tokyo_night_moon = "base16-tokyo-night-moon",
-    kanagawa = "kanagawa",
-}
-
-local theme_lookup = {}
-for key, value in pairs(themes) do
-    theme_lookup[value] = key
-end
-
-local default_colorscheme = {
-    name = theme_lookup[themes.tokyo_city_terminal_dark],
-    value = themes.tokyo_city_terminal_dark,
-}
+-- lua/colorscheme.lua
+local M = {}
 
 local colorscheme_file = vim.fn.stdpath("config") .. "/colorscheme.txt"
 
@@ -23,7 +8,7 @@ local function read_colorscheme()
     if file then
         local color = file:read("*l")
         file:close()
-        return themes[color] and color or nil
+        return color
     end
 end
 
@@ -41,19 +26,22 @@ local function get_hl(name)
     return vim.api.nvim_get_hl(0, { name = name, link = false }) or {}
 end
 
-function ColorMyPencils(color)
+function M.apply(color)
     color = color or read_colorscheme()
 
-    if themes[color] then
-        vim.cmd.colorscheme(themes[color])
-        save_colorscheme(color)
+    if color then
+        local ok, err = pcall(function()
+            vim.cmd.colorscheme(color)
+        end)
+        if ok then
+            save_colorscheme(color)
+        else
+            print("Error applying colorscheme:", err)
+        end
     else
         print("Error: Colorscheme not found! Using default.")
-        vim.cmd.colorscheme(default_colorscheme.value)
-        save_colorscheme(default_colorscheme.name)
     end
 
-    -- Optional for transparecy
     local visual = get_hl("Visual")
     local cursorline = get_hl("CursorLine")
     local comment = get_hl("Comment")
@@ -89,20 +77,4 @@ function ColorMyPencils(color)
     })
 end
 
-vim.api.nvim_create_user_command("ChangeColorscheme", function(opts)
-    ColorMyPencils(opts.args)
-    print("Changing colorscheme to: " .. opts.args)
-end, {
-    nargs = 1,
-    complete = function(arglead)
-        local matches = {}
-        for theme, _ in pairs(themes) do
-            if theme:sub(1, #arglead) == arglead then
-                table.insert(matches, theme)
-            end
-        end
-        return matches
-    end,
-})
-
-ColorMyPencils()
+return M
