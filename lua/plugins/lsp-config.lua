@@ -36,6 +36,9 @@ return {
                     lspconfig.markdown_oxide.setup({
                         capabilities = lspconfig_defaults.capabilities,
                     })
+                    lspconfig.angularls.setup({
+                        capabilities = lspconfig_defaults.capabilities,
+                    })
 
                     vim.api.nvim_create_autocmd("LspAttach", {
                         desc = "LSP actions",
