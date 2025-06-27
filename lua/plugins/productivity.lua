@@ -2,9 +2,8 @@ return {
     {
         --"jiangmiao/auto-pairs",
     },
-    -- lazy.nvim
     {
-        "folke/noice.nvim",
+        --[[ "folke/noice.nvim",
         event = "VeryLazy",
         opts = {
             -- add any options here
@@ -23,7 +22,7 @@ return {
                     })
                 end,
             },
-        },
+        }, ]]
     },
     {
         "folke/which-key.nvim",
