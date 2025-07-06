@@ -27,6 +27,8 @@ local function get_hl(name)
 end
 
 function M.apply(color)
+    require("config.transparency").apply()
+
     color = color or read_colorscheme()
 
     if color then
@@ -48,9 +50,6 @@ function M.apply(color)
     local funct = get_hl("Function")
     local type = get_hl("Type")
     local statement = get_hl("Statement")
-
-    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
     vim.api.nvim_set_hl(0, "LspInlayHint", {
         bg = cursorline.bg or visual.bg,

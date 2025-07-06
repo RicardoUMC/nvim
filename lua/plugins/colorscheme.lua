@@ -1,5 +1,4 @@
 vim.opt.termguicolors = true
-vim.g.tinted_background_transparent = 1
 
 return {
     {

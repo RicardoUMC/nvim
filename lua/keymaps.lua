@@ -70,6 +70,12 @@ vim.keymap.set("n", "<leader>h", function()
     print("Highlight search " .. (vim.o.hlsearch and "enabled" or "disabled"))
 end, { desc = "Toggle search highlight" })
 
+-- Toggle transparent background <leader>b
+vim.keymap.set("n", "<leader>b", function()
+    require("config.transparency").toggle()
+    require("config.color").apply()
+end, { desc = "Toggle transparent background" })
+
 vim.keymap.set("x", "<leader>p", '"_dp')
 
 vim.keymap.set("n", "<leader>y", '"+y')
