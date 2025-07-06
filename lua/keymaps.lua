@@ -20,16 +20,16 @@ vim.keymap.set("v", "<Right>", ":<C-u>echoe 'Get off my lawn!'<CR>")
 
 -- Personalize mappings
 vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<M-C-Up>", "<C-w>k", { noremap = true })
-vim.api.nvim_set_keymap("n", "<M-C-Down>", "<C-w>j", { noremap = true })
-vim.api.nvim_set_keymap("n", "<M-C-Left>", "<C-w>h", { noremap = true })
-vim.api.nvim_set_keymap("n", "<M-C-Right>", "<C-w>l", { noremap = true })
+vim.keymap.set("n", "<C-k>", 'wincmd k<CR>')
+vim.keymap.set("n", "<C-j>", 'wincmd j<CR>')
+vim.keymap.set("n", "<C-h>", 'wincmd h<CR>')
+vim.keymap.set("n", "<C-l>", 'wincmd l<CR>')
 vim.api.nvim_set_keymap("n", "<A-a>", "ggVG", { noremap = true })
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "FileType" }, {
-  callback = function()
-    vim.opt_local.formatoptions:remove("o")
-  end,
+    callback = function()
+        vim.opt_local.formatoptions:remove("o")
+    end,
 })
 
 local function insert_commented_line(below)
