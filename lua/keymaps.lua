@@ -32,27 +32,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "FileType" }, {
     end,
 })
 
-local function insert_commented_line(below)
-    local commentstring = vim.bo.commentstring or "// %s"
-    local cs = commentstring:match("^(.*)%%s") or "//"
-    local indent = string.match(vim.api.nvim_get_current_line(), "^%s*") or ""
-    local commented_line = indent .. cs .. " "
-
-    local linenr = vim.api.nvim_win_get_cursor(0)[1]
-    if below then
-        vim.api.nvim_buf_set_lines(0, linenr, linenr, false, { commented_line })
-        vim.api.nvim_win_set_cursor(0, { linenr + 1, #commented_line })
-    else
-        vim.api.nvim_buf_set_lines(0, linenr - 1, linenr - 1, false, { commented_line })
-        vim.api.nvim_win_set_cursor(0, { linenr, #commented_line })
-    end
-
-    vim.cmd("startinsert")
-end
-
-vim.keymap.set("n", "<leader>o", function() insert_commented_line(true) end, { desc = "Insert commented line below" })
-vim.keymap.set("n", "<leader>O", function() insert_commented_line(false) end, { desc = "Insert commented line above" })
-
 -- Suggested mappings
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
