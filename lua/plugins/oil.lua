@@ -1,9 +1,16 @@
 return {
     'stevearc/oil.nvim',
-    ---@module 'oil'
-    ---@type oil.SetupOpts
     opts = {
-        vim.keymap.set("n", "-",  "<cmd>Oil<CR>", { desc = "Open Oil in current directory" })
+        vim.keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open Oil in current directory" }),
+        vim.keymap.set("n", "<leader>-", "<cmd>Oil --float<CR>", { desc = "Open floating Oil in current directory" }),
+        columns = {
+            "icon",
+            -- "permissions",
+        },
+        float = {
+            -- preview_split: Split direction: "auto", "left", "right", "above", "below".
+            preview_split = "right",
+        },
     },
     -- Optional dependencies
     -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
