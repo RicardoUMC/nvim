@@ -3,33 +3,40 @@ return {
         --"jiangmiao/auto-pairs",
     },
     {
-        --[[ "folke/noice.nvim",
+        "folke/noice.nvim",
         event = "VeryLazy",
         opts = {
-            -- add any options here
+            cmdline = {
+                view = "cmdline_popup", -- "cmdline" or "cmdline_popup"
+                format = {
+                    cmdline = { icon = " ", lang = "vim" },
+                    search_down = { icon = "🔍 ", lang = "regex" },
+                    search_up = { icon = "🔍 ", lang = "regex" },
+                    filter = { icon = "!", lang = "bash" },
+                },
+                presets = {
+                    bottom_search = true,
+                    command_palette = true,
+                    lsp_doc_border = true,
+                },
+            },
         },
         dependencies = {
-            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
             "MunifTanjim/nui.nvim",
-            -- OPTIONAL:
-            --   `nvim-notify` is only needed, if you want to use the notification view.
-            --   If not available, we use `mini` as the fallback
             {
                 "rcarriga/nvim-notify",
-                config = function()
-                    require("notify").setup({
-                        background_colour = vim.api.nvim_get_hl(0, { name = "Normal" }).bg or "#000000",
-                    })
-                end,
+                opts = {
+                    background_colour = "#000000",
+                },
             },
-        }, ]]
+        },
     },
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
         opts = {
             preset = "modern",
-            delay = function(_)
+            delay = function()
                 return 0
             end,
             -- your configuration comes here
@@ -52,6 +59,9 @@ return {
         keys = {
             { "w", "<cmd>lua require('spider').motion('w')<CR>", mode = { "n", "o", "x" } },
             { "e", "<cmd>lua require('spider').motion('e')<CR>", mode = { "n", "o", "x" } },
+            { "b", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "o", "x" } },
+            { "W", "<cmd>lua require('spider').motion('W')<CR>", mode = { "n", "o", "x" } },
+            { "e", "<cmd>lua require('spider').motion('E')<CR>", mode = { "n", "o", "x" } },
             { "b", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "o", "x" } },
         },
     },
