@@ -2,7 +2,7 @@ return {
     {
         "mason-org/mason-lspconfig.nvim",
         opts = {
-            ensure_installed = { "lua_ls", "rust_analyzer", "clangd" },
+            ensure_installed = { "lua_ls", "clangd" },
             automatic_installation = true,
         },
         dependencies = {
@@ -12,6 +12,15 @@ return {
             },
             {
                 "neovim/nvim-lspconfig",
+                opts = {
+                    servers = {
+                        angularls = {
+                            root_dir = function(fname)
+                                return require("lspconfig.util").root_pattern("angular.json", "project.json")(fname)
+                            end,
+                        },
+                    },
+                },
                 config = function()
                     local lspconfig_defaults = require("lspconfig").util.default_config
                     lspconfig_defaults.capabilities = vim.tbl_deep_extend(
@@ -26,6 +35,15 @@ return {
                     })
                     lspconfig.rust_analyzer.setup({
                         capabilities = lspconfig_defaults.capabilities,
+                        settings = {
+                            ["rust-analyzer"] = {
+                                inlayHints = {
+                                    enable = true,
+                                    parameterHints = { enable = true },
+                                    typeHints = { enable = true },
+                                },
+                            },
+                        },
                     })
                     lspconfig.clangd.setup({
                         capabilities = lspconfig_defaults.capabilities,
@@ -45,7 +63,7 @@ return {
                         callback = function(event)
                             local opts = { buffer = event.buf }
 
-                            vim.lsp.inlay_hint.enable(true)
+                            -- vim.lsp.inlay_hint.enable(true)
                             vim.keymap.set("n", "<leader>th", function()
                                 local enabled = vim.lsp.inlay_hint.is_enabled()
                                 vim.lsp.inlay_hint.enable(not enabled)
@@ -72,4 +90,3 @@ return {
         },
     },
 }
-
