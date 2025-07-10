@@ -23,9 +23,7 @@ return {
             { "w", "<cmd>lua require('spider').motion('w')<CR>", mode = { "n", "o", "x" } },
             { "e", "<cmd>lua require('spider').motion('e')<CR>", mode = { "n", "o", "x" } },
             { "b", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "o", "x" } },
-            { "W", "<cmd>lua require('spider').motion('W')<CR>", mode = { "n", "o", "x" } },
-            { "e", "<cmd>lua require('spider').motion('E')<CR>", mode = { "n", "o", "x" } },
-            { "b", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "o", "x" } },
+            { "E", "<cmd>lua require('spider').motion('ge')<CR>", mode = { "n", "o", "x" } },
         },
     },
     {
@@ -60,7 +58,7 @@ return {
                     require("noice").notify(
                         "Recording macro: @" .. reg,
                         vim.log.levels.INFO,
-                        { title = "Macro Recording", timeout = 2000, merge = true }
+                        { title = "Macro Recording", timeout = 2000, merge = false }
                     )
                 end,
             })
@@ -70,7 +68,7 @@ return {
                     require("noice").notify(
                         "Macro recording stopped",
                         vim.log.levels.INFO,
-                        { title = "Macro Recording", timeout = 500, merge = true }
+                        { title = "Macro Recording", timeout = 500, merge = false }
                     )
                 end,
             })
