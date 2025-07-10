@@ -1,14 +1,16 @@
 return {
     "nvim-lualine/lualine.nvim",
-    config = function()
-        local custom_onedark = require 'lualine.themes.onedark'
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = function()
+        local custom_onedark = require("lualine.themes.onedark")
         custom_onedark.normal.c.bg = "None"
         custom_onedark.inactive.c.bg = "None"
-        local custom_horizon = require 'lualine.themes.horizon'
+
+        local custom_horizon = require("lualine.themes.horizon")
         custom_horizon.normal.c.bg = "None"
         custom_horizon.inactive.c.bg = "None"
 
-        require("lualine").setup({
+        return {
             options = {
                 icons_enabled = true,
                 theme = custom_onedark,
@@ -19,6 +21,12 @@ return {
                 -- theme = "dracula"
                 -- theme = "horizon"
             },
-        })
+            sections = {
+                lualine_a = { { "mode", icon = "" } },
+            },
+        }
+    end,
+    config = function(_, opts)
+        require("lualine").setup(opts)
     end,
 }
