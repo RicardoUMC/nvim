@@ -19,11 +19,10 @@ vim.keymap.set("v", "<Left>", ":<C-u>echoe 'Get off my lawn!'<CR>")
 vim.keymap.set("v", "<Right>", ":<C-u>echoe 'Get off my lawn!'<CR>")
 
 -- Personalize mappings
-vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true })
-vim.keymap.set("n", "<C-k>", 'wincmd k<CR>')
-vim.keymap.set("n", "<C-j>", 'wincmd j<CR>')
-vim.keymap.set("n", "<C-h>", 'wincmd h<CR>')
-vim.keymap.set("n", "<C-l>", 'wincmd l<CR>')
+vim.keymap.set("n", "<C-k>", "wincmd k<CR>")
+vim.keymap.set("n", "<C-j>", "wincmd j<CR>")
+vim.keymap.set("n", "<C-h>", "wincmd h<CR>")
+vim.keymap.set("n", "<C-l>", "wincmd l<CR>")
 vim.api.nvim_set_keymap("n", "<A-a>", "ggVG", { noremap = true })
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "FileType" }, {
@@ -41,6 +40,12 @@ vim.keymap.set("n", "<C-d>", "8jzz")
 vim.keymap.set("n", "<C-u>", "8kzz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+
+--Delete all buffers but the current one
+vim.keymap.set( "n", "<leader>bq", '<Esc>:%bdelete|edit #|normal`"<Return>', { desc = "Delete all buffers but the current one" })
+
+-- Refine Ctrl-s to save with the custom function
+vim.api.nvim_set_keymap("n", "<C-s>", ":lua SaveFile()<CR>", { noremap = true, silent = true })
 
 -- Toggle hlsearch con <leader>h
 vim.keymap.set("n", "<leader>h", function()
@@ -106,5 +111,25 @@ function CheckKeymapConflicts()
         end
     else
         print("✅ No keymap conflicts found")
+    end
+end
+
+-- Custom save function
+function SaveFile()
+    -- Check if a buffer with a file is open
+    if vim.fn.empty(vim.fn.expand("%:t")) == 1 then
+        vim.notify("No file to save", vim.log.levels.WARN)
+        return
+    end
+
+    local filename = vim.fn.expand("%:t") -- Get only the filename
+    local success, err = pcall(function()
+        vim.cmd("silent! write")          -- Try to save the file without showing the default message
+    end)
+
+    if success then
+        vim.notify(filename .. " Saved!")                  -- Show only the custom message if successful
+    else
+        vim.notify("Error: " .. err, vim.log.levels.ERROR) -- Show the error message if it fails
     end
 end
