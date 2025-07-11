@@ -15,6 +15,13 @@ return {
                 opts = {
                     servers = {
                         angularls = {
+                            cmd = {
+                                "node",
+                                "./node_modules/@angular/language-server/bin/ngserver",
+                                "--stdio",
+                                "--tsProbeLocations", "./node_modules",
+                                "--ngProbeLocations", "./node_modules"
+                            },
                             root_dir = function(fname)
                                 return require("lspconfig.util").root_pattern("angular.json", "project.json")(fname)
                             end,
@@ -54,9 +61,9 @@ return {
                     lspconfig.markdown_oxide.setup({
                         capabilities = lspconfig_defaults.capabilities,
                     })
-                    lspconfig.angularls.setup({
-                        capabilities = lspconfig_defaults.capabilities,
-                    })
+                    -- lspconfig.angularls.setup({
+                    --     capabilities = lspconfig_defaults.capabilities,
+                    -- })
 
                     vim.api.nvim_create_autocmd("LspAttach", {
                         desc = "LSP actions",
