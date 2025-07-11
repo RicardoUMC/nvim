@@ -1,3 +1,5 @@
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 return {
     {
         "mason-org/mason-lspconfig.nvim",
@@ -29,19 +31,13 @@ return {
                     },
                 },
                 config = function()
-                    local lspconfig_defaults = require("lspconfig").util.default_config
-                    lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-                        "force",
-                        lspconfig_defaults.capabilities,
-                        require("cmp_nvim_lsp").default_capabilities()
-                    )
-
                     local lspconfig = require("lspconfig")
+
                     lspconfig.lua_ls.setup({
-                        capabilities = lspconfig_defaults.capabilities,
+                        capabilities = capabilities,
                     })
                     lspconfig.rust_analyzer.setup({
-                        capabilities = lspconfig_defaults.capabilities,
+                        capabilities = capabilities,
                         settings = {
                             ["rust-analyzer"] = {
                                 inlayHints = {
@@ -53,17 +49,14 @@ return {
                         },
                     })
                     lspconfig.clangd.setup({
-                        capabilities = lspconfig_defaults.capabilities,
+                        capabilities = capabilities,
                     })
                     lspconfig.marksman.setup({
-                        capabilities = lspconfig_defaults.capabilities,
+                        capabilities = capabilities,
                     })
                     lspconfig.markdown_oxide.setup({
-                        capabilities = lspconfig_defaults.capabilities,
+                        capabilities = capabilities,
                     })
-                    -- lspconfig.angularls.setup({
-                    --     capabilities = lspconfig_defaults.capabilities,
-                    -- })
 
                     vim.api.nvim_create_autocmd("LspAttach", {
                         desc = "LSP actions",
