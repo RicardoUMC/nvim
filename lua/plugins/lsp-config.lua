@@ -16,7 +16,20 @@ return {
                 "neovim/nvim-lspconfig",
                 opts = {
                     servers = {
+                        lua_ls = {
+                            capabilities = capabilities,
+                        },
+                        clangd = {
+                            capabilities = capabilities,
+                        },
+                        marksman = {
+                            capabilities = capabilities,
+                        },
+                        markdown_oxide = {
+                            capabilities = capabilities,
+                        },
                         angularls = {
+                            capabilities = capabilities,
                             cmd = {
                                 "node",
                                 "./node_modules/@angular/language-server/bin/ngserver",
@@ -27,38 +40,22 @@ return {
                             root_dir = function(fname)
                                 return require("lspconfig.util").root_pattern("angular.json", "project.json")(fname)
                             end,
+                        },
+                        rust_analyzer = {
                             capabilities = capabilities,
+                            settings = {
+                                ["rust-analyzer"] = {
+                                    inlayHints = {
+                                        enable = true,
+                                        parameterHints = { enable = true },
+                                        typeHints = { enable = true },
+                                    },
+                                },
+                            },
                         },
                     },
                 },
                 config = function()
-                    local lspconfig = require("lspconfig")
-
-                    lspconfig.lua_ls.setup({
-                        capabilities = capabilities,
-                    })
-                    lspconfig.rust_analyzer.setup({
-                        capabilities = capabilities,
-                        settings = {
-                            ["rust-analyzer"] = {
-                                inlayHints = {
-                                    enable = true,
-                                    parameterHints = { enable = true },
-                                    typeHints = { enable = true },
-                                },
-                            },
-                        },
-                    })
-                    lspconfig.clangd.setup({
-                        capabilities = capabilities,
-                    })
-                    lspconfig.marksman.setup({
-                        capabilities = capabilities,
-                    })
-                    lspconfig.markdown_oxide.setup({
-                        capabilities = capabilities,
-                    })
-
                     vim.api.nvim_create_autocmd("LspAttach", {
                         desc = "LSP actions",
                         callback = function(event)
