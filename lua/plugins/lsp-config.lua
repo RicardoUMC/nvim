@@ -62,7 +62,7 @@ return {
                             local opts = { buffer = event.buf }
 
                             -- vim.lsp.inlay_hint.enable(true)
-                            vim.keymap.set("n", "<leader>ih", function()
+                            vim.keymap.set("n", "<leader>i", function()
                                 local enabled = vim.lsp.inlay_hint.is_enabled()
                                 vim.lsp.inlay_hint.enable(not enabled)
                             end, { desc = "Toggle inlay hints" })

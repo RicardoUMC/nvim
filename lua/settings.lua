@@ -1,26 +1,39 @@
-vim.o.mouse = "a"
-
 -- Configuración básica
-vim.opt.isfname:append("@-@")
-vim.opt.signcolumn = "yes"
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.cursorline = true
+vim.opt.wrap = true
+vim.opt.scrolloff = 8
 
-vim.opt.expandtab = true
+-- Indentación y tabulación
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
+vim.opt.expandtab = true
 vim.opt.autoindent = true
-vim.opt.smartindent = false -- Revisar negativo con treesitter
-vim.opt.wrap = true
+vim.opt.smartindent = false
 
-vim.opt.scrolloff = 8
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.showcmd = true
-vim.opt.showmatch = true
-
-vim.opt.hlsearch = true
+-- Búsqueda y resaltado
+vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
-vim.opt.updatetime = 50
-vim.o.timeout = true
-vim.o.timeoutlen = 250
+-- Visualización y apariencia
+vim.opt.signcolumn = "yes"
+vim.opt.colorcolumn = "100"
+vim.opt.showmatch = true
+vim.opt.showcmd = true
+
+-- Comportamiento
+vim.opt.timeout = true
+vim.opt.updatetime = 300
+vim.opt.timeoutlen = 500
+vim.opt.autoread = true
+vim.o.mouse = "a"
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undofile = true
+vim.opt.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir"
+vim.opt.clipboard:append("unnamedplus")
+vim.opt.encoding = "UTF-8"
+
+vim.opt.isfname:append("@-@")
