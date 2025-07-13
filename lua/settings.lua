@@ -32,14 +32,13 @@ vim.o.mouse = "a"
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
--- vim.opt.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir"
 vim.opt.undodir = (function()
     if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
         -- Windows: usa %LOCALAPPDATA%\nvim-data\undo
         return vim.fn.stdpath("data") .. "\\undo"
     else
-        -- Linux/macOS: usa ~/.local/share/nvim/undo
-        return os.getenv("HOME") .. "/.local/share/nvim/undo"
+        -- Linux/macOS: usa ~/.local/share/nvim/undodir
+        return os.getenv("HOME") .. "/.local/share/nvim/undodir"
     end
 end)()
 vim.opt.clipboard:append("unnamedplus")
