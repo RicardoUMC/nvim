@@ -1,4 +1,4 @@
--- lua/transparency.lua
+-- lua/config/transparency.lua
 local M = {}
 
 local transparency_file = vim.fn.stdpath("config") .. "/transparency.txt"
@@ -25,33 +25,28 @@ local function save_transparency(enabled)
     end
 end
 
--- Aplicar estado de transparencia
-function M.apply()
+function M.set_tinted_bg_transparent()
+    local enabled = read_transparency()
+    vim.g.tinted_background_transparent = enabled and 1 or 0
+end
+
+function M.set_hl_transarent()
     local enabled = read_transparency()
     if enabled then
         vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
         vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    else
-        vim.api.nvim_set_hl(0, "Normal", { bg = nil })
-        vim.api.nvim_set_hl(0, "NormalFloat", { bg = nil })
     end
-    vim.g.tinted_background_transparent = enabled and 1 or 0
 end
 
 -- Toggle y guardar
 function M.toggle()
     local new_state = not read_transparency()
-    if new_state then
-        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    else
-        vim.api.nvim_set_hl(0, "Normal", { bg = nil })
-        vim.api.nvim_set_hl(0, "NormalFloat", { bg = nil })
-    end
-    vim.g.tinted_background_transparent = new_state and 1 or 0
     save_transparency(new_state)
-
-    print(new_state and "🟢 Transparent background on" or "🔴 Transparent background off")
+    if new_state then
+        print("🟢 Fondo transparente habilitado")
+    else
+        print("🔴 Fondo transparente deshabilitado")
+    end
 end
 
 return M

@@ -30,9 +30,15 @@ return {
 
            -- Colorscheme Configuration
             vim.keymap.set("n", "<leader>cs", function()
-                local ok, colorscheme_util = pcall(require, "config.color")
-                if not ok then
+                local ok_color, colorscheme_util = pcall(require, "config.color")
+                if not ok_color then
                     print("Error loading config.color:", colorscheme_util)
+                    return
+                end
+
+                local ok_transparency, transparency_util = pcall(require, "config.transparency")
+                if not ok_transparency then
+                    print("Error loading config.transparency:", transparency_util)
                     return
                 end
 
@@ -59,10 +65,12 @@ return {
                         attach_mappings = function(prompt_bufnr, map)
                             local function preview()
                                 local entry = action_state.get_selected_entry()
+                                transparency_util.set_tinted_bg_transparent()
                                 if entry and entry.value and entry.value ~= previewed then
                                     vim.cmd.colorscheme(entry.value)
                                     previewed = entry.value
                                 end
+                                transparency_util.set_hl_transarent()
                             end
 
                             map({ "n", "i" }, "<Tab>", function()
@@ -70,6 +78,14 @@ return {
                                 preview()
                             end)
                             map({ "n", "i" }, "<S-Tab>", function()
+                                actions.move_selection_previous(prompt_bufnr)
+                                preview()
+                            end)
+                            map("i", "<C-n>", function()
+                                actions.move_selection_next(prompt_bufnr)
+                                preview()
+                            end)
+                            map("i", "<C-p>", function()
                                 actions.move_selection_previous(prompt_bufnr)
                                 preview()
                             end)

@@ -1,4 +1,4 @@
--- lua/colorscheme.lua
+-- lua/config/color.lua
 local M = {}
 
 local colorscheme_file = vim.fn.stdpath("config") .. "/colorscheme.txt"
@@ -27,7 +27,7 @@ local function get_hl(name)
 end
 
 function M.apply(color)
-    require("config.transparency").apply()
+    require("config.transparency").set_tinted_bg_transparent()
 
     color = color or read_colorscheme()
 
@@ -74,6 +74,8 @@ function M.apply(color)
         fg = cursorline.bg,
         bold = true,
     })
+
+    require("config.transparency").set_hl_transarent()
 end
 
 return M

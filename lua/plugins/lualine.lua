@@ -13,6 +13,7 @@ return {
         return {
             options = {
                 icons_enabled = true,
+                -- Themes
                 theme = custom_onedark,
                 -- theme = custom_horizon,
                 -- theme = "ayu_dark"
@@ -20,9 +21,36 @@ return {
                 -- theme = "ayu_mirage"
                 -- theme = "dracula"
                 -- theme = "horizon"
+                -- theme = "evangelion",
+                -- Separators
+                -- component_separators = { left = "░", right = "░" },
+                -- section_separators = { left = "▓▒░", right = "░▒▓" },
             },
             sections = {
                 lualine_a = { { "mode", icon = "" } },
+                -- Use with evangelion theme
+                -- lualine_b = {
+                --     "branch",
+                --     {
+                --         "diff",
+                --         colored = true,
+                --         diff_color = {
+                --             added = { fg = "#151515" },
+                --             modified = { fg = "#151515" },
+                --             removed = { fg = "#151515" },
+                --         },
+                --     },
+                --     {
+                --         "diagnostics",
+                --         sources = { "nvim_diagnostic" },
+                --         --         symbols = { error = " ", warn = " ", info = " " },
+                --         diagnostics_color = {
+                --             error = { fg = "#151515" },
+                --             warn = { fg = "#151515" },
+                --             info = { fg = "#151515" },
+                --         },
+                --     },
+                -- },
             },
         }
     end,

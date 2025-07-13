@@ -10,4 +10,10 @@ return {
     {
         "scottmckendry/cyberdream.nvim",
     },
+    {
+        "hachy/eva01.vim",
+    },
+    {
+        "xero/evangelion.nvim",
+    },
 }
