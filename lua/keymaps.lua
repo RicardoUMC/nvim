@@ -4,6 +4,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.keymap.set("i", "<C-c>", "<Esc>", { desc = "Exit insert mode with '<C-c>'" })
+
 -- Disable arrows
 vim.keymap.set("n", "<Up>", ":echoe 'Get off my lawn!'<CR>")
 vim.keymap.set("n", "<Down>", ":echoe 'Get off my lawn!'<CR>")
