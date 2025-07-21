@@ -48,44 +48,44 @@ return {
                 -- demás mappings integrados por el plugin
             },
         },
-        keys = {
-            {
-                "<leader>aa",
-                function()
-                    require("CopilotChat").toggle()
-                end,
-                desc = "Toggle CopilotChat",
-                mode = { "n", "v" },
-            },
-            {
-                "<leader>ax",
-                function()
-                    require("CopilotChat").reset()
-                end,
-                desc = "Reset CopilotChat",
-                mode = { "n", "v" },
-            },
-            {
-                "<leader>aq",
-                function()
-                    vim.ui.input({ prompt = "Quick Chat: " }, function(input)
-                        if input and input ~= "" then
-                            require("CopilotChat").ask(input)
-                        end
-                    end)
-                end,
-                desc = "Quick Chat Copilot",
-                mode = { "n", "v" },
-            },
-            {
-                "<leader>ap",
-                function()
-                    require("CopilotChat").select_prompt()
-                end,
-                desc = "Select Prompt",
-                mode = { "n", "v" },
-            },
-        },
+        -- keys = {
+        --     {
+        --         "<leader>aa",
+        --         function()
+        --             require("CopilotChat").toggle()
+        --         end,
+        --         desc = "Toggle CopilotChat",
+        --         mode = { "n", "v" },
+        --     },
+        --     {
+        --         "<leader>ax",
+        --         function()
+        --             require("CopilotChat").reset()
+        --         end,
+        --         desc = "Reset CopilotChat",
+        --         mode = { "n", "v" },
+        --     },
+        --     {
+        --         "<leader>aq",
+        --         function()
+        --             vim.ui.input({ prompt = "Quick Chat: " }, function(input)
+        --                 if input and input ~= "" then
+        --                     require("CopilotChat").ask(input)
+        --                 end
+        --             end)
+        --         end,
+        --         desc = "Quick Chat Copilot",
+        --         mode = { "n", "v" },
+        --     },
+        --     {
+        --         "<leader>ap",
+        --         function()
+        --             require("CopilotChat").select_prompt()
+        --         end,
+        --         desc = "Select Prompt",
+        --         mode = { "n", "v" },
+        --     },
+        -- },
         config = function(_, opts)
             local chat = require("CopilotChat")
             vim.api.nvim_create_autocmd("BufEnter", {
