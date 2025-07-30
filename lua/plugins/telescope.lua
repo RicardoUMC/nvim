@@ -28,7 +28,7 @@ return {
             vim.keymap.set("n", "<leader><leader>", builtin.oldfiles, { desc = "Recent Files" })
             vim.keymap.set("n", "<leader>s", builtin.live_grep, { desc = "Search Live Grep" })
 
-           -- Colorscheme Configuration
+            -- Colorscheme Configuration
             vim.keymap.set("n", "<leader>cs", function()
                 local ok_color, colorscheme_util = pcall(require, "config.color")
                 if not ok_color then
@@ -48,12 +48,29 @@ return {
                 local finders = require("telescope.finders")
                 local conf = require("telescope.config").values
                 local theme = require("telescope.themes").get_dropdown({
-                    previewer = false,
-                    width = 0.4,
+                    previewer = true,
+                    layout_strategy = "horizontal",
+                    layout_config = {
+                        width = 0.7,
+                        height = 0.9,
+                        preview_cutoff = 20,
+                        prompt_position = "top",
+                        preview_width = 0.6,
+                    },
                     prompt_title = false,
                 })
 
                 local previewed = nil
+
+                local function preview()
+                    local entry = action_state.get_selected_entry()
+                    transparency_util.set_tinted_bg_transparent()
+                    if entry and entry.value and entry.value ~= previewed then
+                        vim.cmd.colorscheme(entry.value)
+                        previewed = entry.value
+                    end
+                    transparency_util.set_hl_transarent()
+                end
 
                 pickers
                     .new(theme, {
@@ -63,15 +80,6 @@ return {
                         }),
                         sorter = conf.generic_sorter({}),
                         attach_mappings = function(prompt_bufnr, map)
-                            local function preview()
-                                local entry = action_state.get_selected_entry()
-                                transparency_util.set_tinted_bg_transparent()
-                                if entry and entry.value and entry.value ~= previewed then
-                                    vim.cmd.colorscheme(entry.value)
-                                    previewed = entry.value
-                                end
-                                transparency_util.set_hl_transarent()
-                            end
 
                             map({ "n", "i" }, "<Tab>", function()
                                 actions.move_selection_next(prompt_bufnr)
@@ -131,7 +139,23 @@ return {
 
                             return true
                         end,
-                        previewer = false,
+                        previewer = require("telescope.previewers").new_buffer_previewer({
+                            define_preview = function(self)
+                                preview()
+                                local Path = require("plenary.path")
+                                local filepath = Path:new(vim.fn.stdpath("config"), "colorscheme_preview.md").filename
+                                local ok, lines = pcall(vim.fn.readfile, filepath)
+                                if ok and lines then
+                                    vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
+                                    vim.api.nvim_buf_set_option(self.state.bufnr, "filetype", "lua")
+                                    vim.cmd("syntax enable")
+                                else
+                                    vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, {
+                                        "Error reading file: " .. filepath,
+                                    })
+                                end
+                            end,
+                        }),
                     })
                     :find()
             end, { desc = "Telescope Colorscheme Live Preview" })
