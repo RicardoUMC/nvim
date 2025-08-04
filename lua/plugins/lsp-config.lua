@@ -65,6 +65,11 @@ return {
                             vim.keymap.set("n", "<leader>i", function()
                                 local enabled = vim.lsp.inlay_hint.is_enabled()
                                 vim.lsp.inlay_hint.enable(not enabled)
+                                if enabled then
+                                    print("🔴 Inlay hints disabled")
+                                else
+                                    print("🟢 Inlay hints enabled")
+                                end
                             end, { desc = "Toggle inlay hints" })
 
                             vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
