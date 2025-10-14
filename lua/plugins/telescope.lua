@@ -11,6 +11,17 @@ return {
             local telescope = require("telescope")
 
             telescope.setup({
+                -- pickers = {
+                --     find_files = {
+                --         hidden = true,
+                --     },
+                --     grep_string = {
+                --         additional_args = { "--hidden" }
+                --     },
+                --     live_grep = {
+                --         additional_args = { "--hidden" }
+                --     },
+                -- },
                 extensions = {
                     ["ui-select"] = {
                         require("telescope.themes").get_dropdown({}),
@@ -20,6 +31,8 @@ return {
             telescope.load_extension("ui-select")
 
             vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
+            vim.keymap.set("n", "<leader>fF", function() builtin.find_files({ no_ignore = true, hidden = true }) end,
+                { desc = "Find Files (Hidden)" })
             vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Find Git Files" })
             vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find Help Tags" })
             vim.keymap.set("n", "<leader>fw", function()
@@ -27,6 +40,9 @@ return {
             end, { desc = "Find word" })
             vim.keymap.set("n", "<leader><leader>", builtin.oldfiles, { desc = "Recent Files" })
             vim.keymap.set("n", "<leader>s", builtin.live_grep, { desc = "Search Live Grep" })
+            vim.keymap.set("n", "<leader>S",
+                function() builtin.live_grep({ additional_args = { "--no-ignore", "--hidden" } }) end,
+                { desc = "Search Live Grep (Hidden)" })
 
             -- Colorscheme Configuration
             vim.keymap.set("n", "<leader>cs", function()
@@ -80,7 +96,6 @@ return {
                         }),
                         sorter = conf.generic_sorter({}),
                         attach_mappings = function(prompt_bufnr, map)
-
                             map({ "n", "i" }, "<Tab>", function()
                                 actions.move_selection_next(prompt_bufnr)
                                 preview()

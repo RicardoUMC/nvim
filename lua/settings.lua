@@ -19,7 +19,7 @@ vim.opt.incsearch = true
 
 -- Visualización y apariencia
 vim.opt.signcolumn = "yes"
-vim.opt.colorcolumn = "100"
+vim.opt.colorcolumn = "120"
 vim.opt.showmatch = true
 vim.opt.showcmd = true
 
