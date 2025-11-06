@@ -49,7 +49,7 @@ end, { desc = "Toggle transparent background" })
 vim.api.nvim_set_keymap("n", "<C-s>", ":lua SaveFile()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-M-s>", ":lua SaveAllFiles()<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("x", "<leader>p", '"_dp', { desc = "Paste without replacing the default register" })
+vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without replacing the default register" })
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>d", '"+d', { desc = "Delete to system clipboard" })
 
