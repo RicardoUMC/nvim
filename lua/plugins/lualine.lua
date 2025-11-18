@@ -15,10 +15,10 @@ return {
                 icons_enabled = true,
                 -- Themes
                 -- theme = custom_onedark,
-                theme = "tokyonight-storm",
+                -- theme = "tokyonight-storm",
                 -- theme = "tokyonight-storm",
                 -- theme = custom_horizon,
-                -- theme = "ayu_dark"
+                theme = "ayu_dark"
                 -- theme = "onedark",
                 -- theme = "ayu_mirage"
                 -- theme = "dracula"
