@@ -14,7 +14,8 @@ return {
             options = {
                 icons_enabled = true,
                 -- Themes
-                theme = custom_onedark,
+                -- theme = custom_onedark,
+                theme = "tokyonight-storm",
                 -- theme = custom_horizon,
                 -- theme = "ayu_dark"
                 -- theme = "onedark",
