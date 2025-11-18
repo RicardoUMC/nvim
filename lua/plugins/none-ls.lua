@@ -9,6 +9,7 @@ return {
                     extra_args = { "--indent-type", "Spaces", "--indent-width", "4" },
                 }),
                 null_ls.builtins.formatting.prettier,
+                null_ls.builtins.formatting.gofmt,
             },
         })
 

@@ -47,8 +47,9 @@ vim.keymap.set("n", "<leader>t", function()
 end, { desc = "Toggle transparent background" })
 
 vim.api.nvim_set_keymap("n", "<C-s>", ":lua SaveFile()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-M-s>", ":lua SaveAllFiles()<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("x", "<leader>p", '"_dp', { desc = "Paste without replacing the default register" })
+vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without replacing the default register" })
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>d", '"+d', { desc = "Delete to system clipboard" })
 
@@ -117,6 +118,19 @@ function SaveFile()
 
     if success then
         vim.notify(filename .. " Saved!") -- Show only the custom message if successful
+    else
+        vim.notify("Error: " .. err, vim.log.levels.ERROR) -- Show the error message if it fails
+    end
+end
+
+-- Custom save all function
+function SaveAllFiles()
+    local success, err = pcall(function()
+        vim.cmd("silent! wall") -- Save all open files without showing the default message
+    end)
+
+    if success then
+        vim.notify("All files saved!") -- Show a custom message if successful
     else
         vim.notify("Error: " .. err, vim.log.levels.ERROR) -- Show the error message if it fails
     end
