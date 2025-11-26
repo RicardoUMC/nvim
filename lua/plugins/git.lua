@@ -2,10 +2,13 @@ return {
 	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
-			require("gitsigns").setup()
+			local gs = require("gitsigns")
+			gs.setup()
 
-			vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Preview hunk" })
-			vim.keymap.set("n", "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle current line blame"})
+			vim.keymap.set("n", "<leader>gp", gs.preview_hunk, { desc = "Preview hunk" })
+			vim.keymap.set("n", "<leader>gt", gs.toggle_current_line_blame, { desc = "Toggle current line blame" })
+			vim.keymap.set({ "n", "v" }, "<leader>ga", gs.stage_hunk, { desc = "Stage hunk" })
+			vim.keymap.set({ "n", "v" }, "<leader>gu", gs.undo_stage_hunk, { desc = "Undo stage hunk" })
 		end,
 	},
 	{
