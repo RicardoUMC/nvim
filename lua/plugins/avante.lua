@@ -32,7 +32,7 @@ return {
         providers = {
             copilot = {
                 -- endpoint = "https://api.githubcopilot.com",
-                model = "gpt-5.1",
+                model = "gpt-4",
             },
             claude = {
                 endpoint = "https://api.anthropic.com",
