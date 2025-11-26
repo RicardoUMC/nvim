@@ -20,6 +20,8 @@ return {
             vim.keymap.set("n", "<leader>gb", gs.toggle_current_line_blame, { desc = "Toggle current line blame" })
             vim.keymap.set("n", "<leader>gtn", gs.toggle_numhl, { desc = "Toggle line number highlights" })
             vim.keymap.set("n", "<leader>gtl", gs.toggle_linehl, { desc = "Toggle highlighted lines" })
+            vim.keymap.set("n", "gn", function() gs.next_hunk() end, { desc = "Go to next hunk" })
+            vim.keymap.set("n", "gp", function() gs.prev_hunk() end, { desc = "Go to previous hunk" })
 
 		end,
 	},
