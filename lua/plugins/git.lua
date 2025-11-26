@@ -6,6 +6,8 @@ return {
 			{ "<leader>gd", ":Gdiffsplit<CR>", desc = "Git diff split" },
 			{ "<leader>gl", ":vert leftabove Git log<CR>", desc = "Git log" },
 			{ "<leader>gc", ":Git commit -m \"\"<Left>", desc = "Commit changes" },
+            { "<leader>gp", ":Git pull<CR>", desc = "Git pull" },
+            { "<leader>gP", ":Git push<CR>", desc = "Git push" },
 		},
 	},
 	{
@@ -14,7 +16,7 @@ return {
 			local gs = require("gitsigns")
 			gs.setup({ current_line_blame = true })
 
-			vim.keymap.set("n", "<leader>gp", gs.preview_hunk, { desc = "Preview hunk" })
+			vim.keymap.set("n", "<leader>gh", gs.preview_hunk, { desc = "Preview hunk" })
 			vim.keymap.set({ "n", "v" }, "<leader>ga", gs.stage_hunk, { desc = "Stage hunk" })
 			vim.keymap.set({ "n", "v" }, "<leader>gu", gs.undo_stage_hunk, { desc = "Undo stage hunk" })
             vim.keymap.set("n", "<leader>gb", gs.toggle_current_line_blame, { desc = "Toggle current line blame" })
