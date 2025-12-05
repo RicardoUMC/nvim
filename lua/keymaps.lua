@@ -62,6 +62,12 @@ vim.keymap.set(
     ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
     { desc = "Replace all ocurrences of a word" }
 )
+vim.keymap.set(
+    "v",
+    "<leader>r",
+    "y:%s/<C-r>=escape(@\",'/\\')<CR>/<C-r>=escape(@\",'/\\')<CR>/gI<Left><Left><Left>",
+    { desc = "Replace all ocurrences of selected text" }
+)
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Change file permissions to executable" })
 
 function CheckKeymapConflicts()
