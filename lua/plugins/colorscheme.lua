@@ -4,11 +4,17 @@ return {
     {
         "rebelot/kanagawa.nvim",
     },
+    {
+        "EdenEast/nightfox.nvim",
+    },
     -- {
     --     "tinted-theming/tinted-vim",
     -- },
     {
         "scottmckendry/cyberdream.nvim",
+        config = function()
+            require("cyberdream").setup({})
+        end,
     },
     {
         "hachy/eva01.vim",
@@ -34,6 +40,9 @@ return {
         lazy = false,
         priority = 1000,
         opts = {},
+    },
+    {
+        "tiagovla/tokyodark.nvim",
     },
     {
         "navarasu/onedark.nvim",
