@@ -1,5 +1,9 @@
 return {
     {
+        "sphamba/smear-cursor.nvim",
+        opts = {},
+    },
+    {
         "goolord/alpha-nvim",
         requires = {
             "nvim-tree/nvim-web-devicons",
