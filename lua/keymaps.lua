@@ -34,8 +34,8 @@ vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" 
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<C-d>", "8jzz")
-vim.keymap.set("n", "<C-u>", "8kzz")
+vim.keymap.set("n", "<C-d>", "8j")
+vim.keymap.set("n", "<C-u>", "8k")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
