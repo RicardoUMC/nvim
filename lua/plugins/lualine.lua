@@ -10,15 +10,18 @@ return {
         custom_horizon.normal.c.bg = "None"
         custom_horizon.inactive.c.bg = "None"
 
+        -- Get current colorscheme to set as theme
+        -- local current_theme = vim.g.colors_name or "auto"
+
         return {
             options = {
                 icons_enabled = true,
-                -- Themes
+                theme = "auto",
                 -- theme = custom_onedark,
-                -- theme = "tokyonight-storm",
+                -- theme = "tokyonight",
                 -- theme = "tokyonight-storm",
                 -- theme = custom_horizon,
-                theme = "ayu_dark"
+                -- theme = "ayu_dark",
                 -- theme = "onedark",
                 -- theme = "ayu_mirage"
                 -- theme = "dracula"
