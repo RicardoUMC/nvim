@@ -6,6 +6,7 @@ vim.opt.wrap = true
 vim.opt.scrolloff = 8
 
 -- Indentación y tabulación
+vim.g.editorconfig = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
@@ -19,7 +20,7 @@ vim.opt.incsearch = true
 
 -- Visualización y apariencia
 vim.opt.signcolumn = "yes"
-vim.opt.colorcolumn = "120"
+vim.opt.colorcolumn = "156"
 vim.opt.showmatch = true
 vim.opt.showcmd = true
 

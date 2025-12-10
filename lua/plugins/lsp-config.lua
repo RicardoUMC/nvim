@@ -61,8 +61,20 @@ return {
                 "neovim/nvim-lspconfig",
                 config = function()
                     vim.api.nvim_create_autocmd("LspAttach", {
+
                         desc = "LSP actions",
                         callback = function(event)
+                            local client = vim.lsp.get_client_by_id(event.data.client_id)
+                            if not client then
+                                return
+                            end
+
+                            -- 🔴 Desactivar formateo de angularls (y si quieres también de html, ts_ls, etc.)
+                            if client.name == "angularls" or client.name == "html" then
+                                client.server_capabilities.documentFormattingProvider = false
+                                client.server_capabilities.documentRangeFormattingProvider = false
+                            end
+
                             local name = vim.api.nvim_buf_get_name(event.buf)
                             if name:sub(1, 9) == "fugitive:" then
                                 return
