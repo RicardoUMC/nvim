@@ -1,5 +1,8 @@
 return {
     "nvimtools/none-ls.nvim", -- Formatters & Linter
+    dependencies = {
+        "nvimtools/none-ls-extras.nvim",
+    },
     config = function()
         local null_ls = require("null-ls")
 
@@ -10,6 +13,7 @@ return {
                 }),
                 null_ls.builtins.formatting.prettierd,
                 null_ls.builtins.formatting.gofmt,
+                null_ls.builtins.code_actions.gitsigns,
             },
         })
 
