@@ -22,9 +22,9 @@ local function save_colorscheme(color)
     end
 end
 
-local function get_hl(name)
+--[[ local function get_hl(name)
     return vim.api.nvim_get_hl(0, { name = name, link = false }) or {}
-end
+end ]]
 
 function M.apply(color)
     require("config.transparency").set_tinted_bg_transparent()
@@ -44,7 +44,7 @@ function M.apply(color)
         print("Error: Colorscheme not found! Using default.")
     end
 
-    local visual = get_hl("Visual")
+    --[[ local visual = get_hl("Visual")
     local cursorline = get_hl("CursorLine")
     local comment = get_hl("Comment")
     local funct = get_hl("Function")
@@ -73,7 +73,7 @@ function M.apply(color)
         bg = funct.fg or visual.fg or "#ff00ff",
         fg = cursorline.bg,
         bold = true,
-    })
+    }) ]]
 
     require("config.transparency").set_hl_transarent()
 end

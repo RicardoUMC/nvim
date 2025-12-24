@@ -1,5 +1,8 @@
 return {
     "nvimtools/none-ls.nvim", -- Formatters & Linter
+    dependencies = {
+        "nvimtools/none-ls-extras.nvim",
+    },
     config = function()
         local null_ls = require("null-ls")
 
@@ -8,11 +11,19 @@ return {
                 null_ls.builtins.formatting.stylua.with({
                     extra_args = { "--indent-type", "Spaces", "--indent-width", "4" },
                 }),
-                null_ls.builtins.formatting.prettier,
+                null_ls.builtins.formatting.prettierd,
                 null_ls.builtins.formatting.gofmt,
+                null_ls.builtins.code_actions.gitsigns,
             },
         })
 
-        vim.keymap.set({ "n" }, "<leader>gf", vim.lsp.buf.format, { desc = "Format file" })
+        vim.keymap.set({ "n", "v" }, "<leader>gf", function()
+            vim.lsp.buf.format({
+                async = true,
+                filter = function(client)
+                    return client.name == "null-ls"
+                end,
+            })
+        end, { desc = "Format file/block" })
     end,
 }

@@ -34,8 +34,8 @@ vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" 
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<C-d>", "8jzz")
-vim.keymap.set("n", "<C-u>", "8kzz")
+vim.keymap.set("n", "<C-d>", "8j")
+vim.keymap.set("n", "<C-u>", "8k")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
@@ -61,6 +61,12 @@ vim.keymap.set(
     "<leader>r",
     ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
     { desc = "Replace all ocurrences of a word" }
+)
+vim.keymap.set(
+    "v",
+    "<leader>r",
+    "y:%s/<C-r>=escape(@\",'/\\')<CR>/<C-r>=escape(@\",'/\\')<CR>/gI<Left><Left><Left>",
+    { desc = "Replace all ocurrences of selected text" }
 )
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Change file permissions to executable" })
 
