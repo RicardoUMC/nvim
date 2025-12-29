@@ -28,10 +28,10 @@ vim.keymap.set("n", "<C-l>", "wincmd l<CR>")
 vim.keymap.set("n", "<A-a>", "ggVG")
 
 -- Suggested mappings
-vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
-vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
-vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("n", "<PageDown>", ":m .+1<CR>==", { desc = "Move line down" })
+vim.keymap.set("n", "<PageUp>", ":m .-2<CR>==", { desc = "Move line up" })
+vim.keymap.set("v", "<PageDown>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("v", "<PageUp>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "8j")
@@ -39,7 +39,12 @@ vim.keymap.set("n", "<C-u>", "8k")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
-vim.keymap.set( "n", "<leader>bq", '<Esc>:%bdelete|edit #|normal`"<Return>', { desc = "Delete all buffers but the current one" })
+vim.keymap.set(
+    "n",
+    "<leader>bq",
+    '<Esc>:%bdelete|edit #|normal`"<Return>',
+    { desc = "Delete all buffers but the current one" }
+)
 
 vim.keymap.set("n", "<leader>t", function()
     require("config.transparency").toggle()
@@ -47,7 +52,7 @@ vim.keymap.set("n", "<leader>t", function()
 end, { desc = "Toggle transparent background" })
 
 vim.api.nvim_set_keymap("n", "<C-s>", ":lua SaveFile()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-M-s>", ":lua SaveAllFiles()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-s><C-s>", ":lua SaveAllFiles()<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without replacing the default register" })
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to system clipboard" })
