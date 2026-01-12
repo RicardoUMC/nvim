@@ -3,6 +3,7 @@ return {
         "mfussenegger/nvim-dap",
         dependencies = {
             "theHamsta/nvim-dap-virtual-text",
+            "leoluz/nvim-dap-go",
         },
         keys = {
             {
@@ -86,6 +87,9 @@ return {
             -- handlers permite “parchear” o extender configs por adapter
             handlers = {},
         },
+        config = function(_, opts)
+            require("mason-nvim-dap").setup(opts)
+        end,
     },
 
     -- UI: nvim-dap-view
@@ -96,6 +100,7 @@ return {
         opts = {},
         keys = {
             { "<leader>dt", "<cmd>DapViewToggle<cr>", desc = "DAP View Toggle" },
+            { "<leader>dw", "<cmd>DapViewWatch<cr>", desc = "DAP View Watch" },
             { "<leader>dvo", "<cmd>DapViewOpen<cr>", desc = "DAP View Open" },
             { "<leader>dvc", "<cmd>DapViewClose<cr>", desc = "DAP View Close" },
         },
@@ -104,29 +109,15 @@ return {
 
             vim.fn.sign_define(
                 "DapBreakpoint",
-                { text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
-                -- { text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+                { text = "" } -- { text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
             )
-            vim.fn.sign_define("DapBreakpointCondition", {
-                text = "",
-                texthl = "DapBreakpointCondition",
-                linehl = "DapBreakpointCondition",
-                numhl = "DapBreakpointCondition",
-            })
-            vim.fn.sign_define("DapBreakpointRejected", {
-                text = "󰅚",
-                texthl = "DapBreakpointRejected",
-                linehl = "DapBreakpointRejected",
-                numhl = "DapBreakpointRejected",
-            })
-            vim.fn.sign_define(
-                "DapLogPoint",
-                { text = "󰍹", texthl = "DapLogPoint", linehl = "DapLogPoint", numhl = "DapLogPoint" }
-            )
+            vim.fn.sign_define("DapBreakpointCondition", { text = "" })
+            vim.fn.sign_define("DapBreakpointRejected", { text = "󰅚" })
+            vim.fn.sign_define("DapLogPoint", { text = "󰍹" })
             vim.fn.sign_define(
                 "DapStopped",
                 -- { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
-                { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
+                { text = "" }
             )
 
             local dap = require("dap")

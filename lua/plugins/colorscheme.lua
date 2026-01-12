@@ -7,13 +7,19 @@ return {
     {
         "EdenEast/nightfox.nvim",
     },
+    {
+        "Mofiqul/dracula.nvim",
+        config = function()
+            require("dracula").setup({ italic_comment = true })
+        end,
+    },
     -- {
     --     "tinted-theming/tinted-vim",
     -- },
     {
         "scottmckendry/cyberdream.nvim",
         config = function()
-            require("cyberdream").setup({})
+            require("cyberdream").setup({ italic_comments = true })
         end,
     },
     {

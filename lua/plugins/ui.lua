@@ -1,7 +1,23 @@
 return {
     {
         "sphamba/smear-cursor.nvim",
-        opts = {},
+        opts = {
+            time_interval = 5,
+            never_draw_over_target = true,
+            stiffness = 0.8,
+            trailing_stiffness = 0.5,
+            stiffness_insert_mode = 0.7,
+            trailing_stiffness_insert_mode = 0.7,
+            matrix_pixel_threshold = 0.5,
+            damping = 0.95,
+            damping_insert_mode = 0.95,
+            distance_stop_animating = 0.5,
+            legacy_computing_symbols_support = true,
+            distance_stop_animating_vertical_bar = 0.1,
+        },
+        config = function(_, opts)
+            require("smear_cursor").setup(opts)
+        end,
     },
     {
         "goolord/alpha-nvim",
