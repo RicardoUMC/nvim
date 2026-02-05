@@ -3,6 +3,16 @@ vim.opt.termguicolors = true
 return {
     {
         "rebelot/kanagawa.nvim",
+        config = function()
+            require("kanagawa").setup({
+                commentStyle = { italic = true },
+                functionStyle = { bold = true },
+                keywordStyle = { bold = true },
+                statementStyle = { bold = true },
+                typeStyle = { italic = true, bold = true },
+                transparent = true,
+            })
+        end,
     },
     {
         "EdenEast/nightfox.nvim",
@@ -45,7 +55,15 @@ return {
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
-        opts = {},
+        opts = {
+            transparent = true,
+            styles = {
+                comments = { italic = true },
+                keywords = { italic = true },
+                functions = { italic = true },
+                variables = { italic = true },
+            },
+        },
     },
     {
         "tiagovla/tokyodark.nvim",
