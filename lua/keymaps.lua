@@ -39,6 +39,8 @@ vim.keymap.set("n", "<C-u>", "8k")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+vim.keymap.set("n", "<leader><leader>", ":Lazy<CR>", { desc = "Open Lazy" })
+
 vim.keymap.set(
     "n",
     "<leader>bq",

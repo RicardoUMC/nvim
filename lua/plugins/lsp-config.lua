@@ -47,19 +47,21 @@ end
 
 return {
     {
+        "mason-org/mason.nvim",
+        lazy = false,
+        opts = {},
+        config = function(_, opts)
+            require("mason").setup(opts)
+        end,
+    },
+    {
         "mason-org/mason-lspconfig.nvim",
         opts = {
             ensure_installed = { "lua_ls", "clangd" },
             automatic_installation = true,
         },
         dependencies = {
-            {
-                "mason-org/mason.nvim",
-                opts = {},
-                config = function(_, opts)
-                    require("mason").setup(opts)
-                end,
-            },
+            "mason-org/mason.nvim",
             {
                 "neovim/nvim-lspconfig",
                 config = function()

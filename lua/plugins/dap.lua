@@ -3,7 +3,6 @@ return {
         "mfussenegger/nvim-dap",
         dependencies = {
             "theHamsta/nvim-dap-virtual-text",
-            "leoluz/nvim-dap-go",
         },
         keys = {
             {
@@ -68,10 +67,30 @@ return {
         end,
     },
 
+    -- Go: carga/configura solo en buffers Go
+    {
+        "leoluz/nvim-dap-go",
+        ft = { "go", "gomod", "gowork" },
+        dependencies = { "mfussenegger/nvim-dap", "mason-org/mason.nvim" },
+        config = function()
+            local ok, dapgo = pcall(require, "dap-go")
+            if not ok then
+                return
+            end
+
+            dapgo.setup({
+                delve = {
+                    path = vim.fn.exepath("dlv"),
+                },
+            })
+        end,
+    },
+
     -- Mason bridge para DAP (instala adapters por nombre)
     {
         "jay-babu/mason-nvim-dap.nvim",
         dependencies = { "mason-org/mason.nvim", "mfussenegger/nvim-dap" },
+        event = "VeryLazy",
         cmd = { "DapInstall", "DapUninstall" },
         opts = {
             automatic_installation = true,
@@ -95,6 +114,7 @@ return {
     -- UI: nvim-dap-view
     {
         "igorlfs/nvim-dap-view",
+        dependencies = { "mfussenegger/nvim-dap" },
         ---@module 'dap-view'
         ---@type dapview.Config
         opts = {},

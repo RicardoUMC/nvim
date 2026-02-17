@@ -20,9 +20,9 @@ return {
         "chrisgrieser/nvim-spider",
         lazy = true,
         keys = {
-            { "w", "<cmd>lua require('spider').motion('w')<CR>",  mode = { "n", "o", "x" } },
-            { "e", "<cmd>lua require('spider').motion('e')<CR>",  mode = { "n", "o", "x" } },
-            { "b", "<cmd>lua require('spider').motion('b')<CR>",  mode = { "n", "o", "x" } },
+            { "w", "<cmd>lua require('spider').motion('w')<CR>", mode = { "n", "o", "x" } },
+            { "e", "<cmd>lua require('spider').motion('e')<CR>", mode = { "n", "o", "x" } },
+            { "b", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "o", "x" } },
             { "E", "<cmd>lua require('spider').motion('ge')<CR>", mode = { "n", "o", "x" } },
         },
     },
@@ -35,15 +35,19 @@ return {
         },
         opts = {
             cmdline = {
-                view = "cmdline_popup",
+                view = "cmdline",
+                -- view = "cmdline_popup",
                 format = {
-                    cmdline = { icon = " ", lang = "vim" },
-                    search_down = { icon = "🔍 ", lang = "regex" },
-                    search_up = { icon = "🔍 ", lang = "regex" },
-                    filter = { icon = "!", lang = "bash" },
+                    cmdline = { pattern = "^:", icon = "", lang = "vim" },
+                    search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
+                    search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+                    filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
+                    lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
+                    help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
+                    input = { view = "cmdline_input", icon = "󰥻 " }, -- Used by input()
                 },
                 presets = {
-                    bottom_search = true,
+                    bottom_search = false,
                     command_palette = true,
                     lsp_doc_border = true,
                 },
@@ -79,6 +83,16 @@ return {
         event = "VeryLazy",
         opts = {
             preset = "modern",
+            spec = {
+                { "<leader>u", group = "ui" },
+                { "<leader>s", group = "search" },
+                { "<leader>f", group = "file" },
+                { "<leader>b", group = "buffer" },
+                { "<leader>g", group = "git" },
+                { "<leader>d", group = "debug" },
+                { "<leader>h", group = "harpoon" },
+                { "<leader>R", group = "rest" },
+            },
             delay = function()
                 return 0
             end,
