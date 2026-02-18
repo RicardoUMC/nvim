@@ -35,21 +35,56 @@ return {
         },
         opts = {
             cmdline = {
-                view = "cmdline",
-                -- view = "cmdline_popup",
+                -- view = "cmdline",
+                view = "cmdline_popup",
                 format = {
                     cmdline = { pattern = "^:", icon = "", lang = "vim" },
-                    search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
-                    search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+                    search_down = {
+                        kind = "search",
+                        pattern = "^/",
+                        icon = " ",
+                        lang = "regex",
+                        view = "mini",
+                    },
+                    search_up = {
+                        kind = "search",
+                        pattern = "^%?",
+                        icon = " ",
+                        lang = "regex",
+                        view = "mini",
+                    },
                     filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
-                    lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
+                    lua = {
+                        pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" },
+                        icon = "",
+                        lang = "lua",
+                        view = "mini",
+                    },
                     help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
                     input = { view = "cmdline_input", icon = "󰥻 " }, -- Used by input()
                 },
                 presets = {
-                    bottom_search = false,
+                    bottom_search = true,
                     command_palette = true,
                     lsp_doc_border = true,
+                },
+            },
+            views = {
+                cmdline_popup = {
+                    position = {
+                        row = -3,
+                        col = "50%",
+                    },
+                    size = {
+                        width = 45,
+                        height = "auto",
+                    },
+                },
+                mini = {
+                    position = {
+                        row = -1,
+                        col = 6,
+                    },
                 },
             },
         },

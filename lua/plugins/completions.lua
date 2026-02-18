@@ -157,7 +157,7 @@ return {
         ---@param opts blink.cmp.Config | { sources: { compat: string[] } }
         config = function(_, opts)
             if opts.snippets and opts.snippets.preset == "default" then
-                opts.snippets.expand = LazyVim.cmp.expand
+                -- opts.snippets.expand = require('luasnip').lsp_expand -- Descomenta y ajusta esto si quieres usar luasnip directamente, o usa tu función preferida.
             end
             -- setup compat sources
             local enabled = opts.sources.default
@@ -177,12 +177,19 @@ return {
                 if opts.keymap.preset == "super-tab" then -- super-tab
                     opts.keymap["<Tab>"] = {
                         require("blink.cmp.keymap.presets").get("super-tab")["<Tab>"][1],
-                        LazyVim.cmp.map({ "snippet_forward", "ai_nes", "ai_accept" }),
+                        -- Añade aquí la lógica deseada para el tab. Ejemplo usando luasnip:
+                        function()
+                            if require("luasnip").expand_or_jumpable() then
+                                require("luasnip").expand_or_jump()
+                            else
+                                -- fallback()
+                            end
+                        end,
                         "fallback",
                     }
                 else -- other presets
                     opts.keymap["<Tab>"] = {
-                        LazyVim.cmp.map({ "snippet_forward", "ai_nes", "ai_accept" }),
+                        require("blink.cmp.keymap.presets").get("enter")["<Tab>"][1],
                         "fallback",
                     }
                 end
@@ -210,7 +217,7 @@ return {
                         items = transform_items and transform_items(ctx, items) or items
                         for _, item in ipairs(items) do
                             item.kind = kind_idx or item.kind
-                            item.kind_icon = LazyVim.config.icons.kinds[item.kind_name] or item.kind_icon or nil
+                            -- item.kind_icon = require('tus_modulos.icons').kinds[item.kind_name] or item.kind_icon or nil
                         end
                         return items
                     end
@@ -221,6 +228,16 @@ return {
             end
 
             require("blink.cmp").setup(opts)
+        end,
+    },
+
+    -- add icons
+    {
+        "saghen/blink.cmp",
+        opts = function(_, opts)
+            opts.appearance = opts.appearance or {}
+            -- Aquí puedes definir tus propios íconos para los tipos de autocompletado si lo deseas.
+            -- opts.appearance.kind_icons = vim.tbl_extend("force", opts.appearance.kind_icons or {}, require('tus_modulos.icons').kinds or {})
         end,
     },
 }
