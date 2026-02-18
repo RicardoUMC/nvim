@@ -35,10 +35,10 @@ return {
 
             vim.keymap.set("n", "<leader>ha", function()
                 harpoon:list():add()
-            end)
-            vim.keymap.set("n", "<leader>h", function()
+            end, { desc = "Add to Harpoon" })
+            vim.keymap.set("n", "<leader>hl", function()
                 harpoon.ui:toggle_quick_menu(harpoon:list())
-            end)
+            end, { desc = "Harpoon list" })
             vim.keymap.set("n", "<leader>ht", function()
                 toggle_telescope(harpoon:list())
             end, { desc = "Open Harpoon Telescope" })
