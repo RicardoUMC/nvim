@@ -84,17 +84,6 @@ return {
                             if name:sub(1, 9) == "fugitive:" then
                                 return
                             end
-                            vim.lsp.inlay_hint.enable(true)
-                            vim.keymap.set("n", "<leader>i", function()
-                                local enabled = vim.lsp.inlay_hint.is_enabled()
-                                vim.lsp.inlay_hint.enable(not enabled)
-                                if enabled then
-                                    print("🔴 Inlay hints disabled")
-                                else
-                                    print("🟢 Inlay hints enabled")
-                                end
-                            end, { desc = "Toggle inlay hints" })
-
                             vim.keymap.set(
                                 "n",
                                 "K",
