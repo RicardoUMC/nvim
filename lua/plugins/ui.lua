@@ -1,14 +1,18 @@
 return {
     {
         "folke/flash.nvim",
-        event = "VeryLazy",
         opts = {},
     },
     {
         "folke/todo-comments.nvim",
-        event = "VeryLazy",
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {},
+        -- PERF: Slow, needs optimize
+        -- HACK: Only runs for TODO buffers
+        -- TODO: Temporary patch, find solution
+        -- NOTE: Add notes
+        -- FIX:  This is a fix
+        -- WARNING: Warning
         config = function(_, opts)
             require("todo-comments").setup(opts)
         end,
