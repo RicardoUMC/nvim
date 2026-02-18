@@ -12,24 +12,24 @@ return {
             require("outline").setup({})
         end,
     },
-    {
-        "echasnovski/mini.nvim",
-        version = false, -- Use the latest version
-        config = function()
-            require("mini.animate").setup({
-                resize = {
-                    enable = false,
-                },
-                open = {
-                    enable = false,
-                },
-                close = {
-                    enable = false,
-                },
-                scroll = {
-                    enable = false,
-                },
-            })
-        end,
-    },
+    -- {
+    --     "echasnovski/mini.nvim",
+    --     version = false, -- Use the latest version
+    --     config = function()
+    --         require("mini.animate").setup({
+    --             resize = {
+    --                 enable = false,
+    --             },
+    --             open = {
+    --                 enable = false,
+    --             },
+    --             close = {
+    --                 enable = false,
+    --             },
+    --             scroll = {
+    --                 enable = false,
+    --             },
+    --         })
+    --     end,
+    -- },
 }
