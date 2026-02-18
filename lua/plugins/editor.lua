@@ -82,7 +82,7 @@ return {
         "folke/which-key.nvim",
         event = "VeryLazy",
         opts = {
-            preset = "modern",
+            preset = "helix",
             spec = {
                 { "<leader>u", group = "ui" },
                 { "<leader>s", group = "search" },
