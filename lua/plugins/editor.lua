@@ -37,7 +37,7 @@ return {
                         pattern = "^/",
                         icon = " ",
                         lang = "regex",
-                        view = "mini",
+                        view = "mini", -- possible views: "mini", "cmdline", "cmdline_popup", "cmdline_input", "popupmenu", "split"
                     },
                     search_up = {
                         kind = "search",
@@ -71,12 +71,6 @@ return {
                     size = {
                         width = 45,
                         height = "auto",
-                    },
-                },
-                mini = {
-                    position = {
-                        row = -1,
-                        col = 6,
                     },
                 },
             },
