@@ -2,6 +2,16 @@ vim.opt.termguicolors = true
 
 return {
     {
+        "vague-theme/vague.nvim",
+        config = function()
+            require("vague").setup({
+                transparent = false,
+                bold = true,
+                italic = true,
+            })
+        end,
+    },
+    {
         "rebelot/kanagawa.nvim",
         config = function()
             require("kanagawa").setup({
