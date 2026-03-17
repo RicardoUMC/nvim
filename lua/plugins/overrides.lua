@@ -13,7 +13,7 @@ return {
         end,
     },
     -- {
-    --     "echasnovski/mini.nvim",
+    --     "nvim-mini/mini.nvim",
     --     version = false, -- Use the latest version
     --     config = function()
     --         require("mini.animate").setup({
