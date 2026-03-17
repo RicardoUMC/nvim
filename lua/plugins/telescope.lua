@@ -41,7 +41,7 @@ return {
             end, { desc = "Find word" })
             vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Recent Files" })
             vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "Search Live Grep" })
-            vim.keymap.set("n", "<leader>S", function()
+            vim.keymap.set("n", "<leader>sG", function()
                 builtin.live_grep({ additional_args = { "--no-ignore", "--hidden" } })
             end, { desc = "Search Live Grep (Hidden)" })
 
