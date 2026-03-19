@@ -10,6 +10,53 @@ return {
                 which_key = true,
                 notify = true,
             },
+            indent = {
+                enabled = true,
+                indent = {
+                    char = "│",
+                },
+                scope = {
+                    enabled = true,
+                    char = "│",
+                    underline = false,
+                },
+                animate = {
+                    enabled = vim.fn.has("nvim-0.10") == 1,
+                    style = "out",
+                    easing = "linear",
+                    duration = {
+                        step = 20,
+                        total = 250,
+                    },
+                },
+                filter = function(buf, _)
+                    if vim.g.snacks_indent == false or vim.b[buf].snacks_indent == false then
+                        return false
+                    end
+                    if vim.bo[buf].buftype ~= "" then
+                        return false
+                    end
+
+                    local ft = vim.bo[buf].filetype
+                    local exclude = {
+                        ["Trouble"] = true,
+                        ["alpha"] = true,
+                        ["dashboard"] = true,
+                        ["help"] = true,
+                        ["lazy"] = true,
+                        ["mason"] = true,
+                        ["neo-tree"] = true,
+                        ["notify"] = true,
+                        ["snacks_dashboard"] = true,
+                        ["snacks_notif"] = true,
+                        ["snacks_terminal"] = true,
+                        ["snacks_win"] = true,
+                        ["toggleterm"] = true,
+                        ["trouble"] = true,
+                    }
+                    return not exclude[ft]
+                end,
+            },
             input = {
                 enabled = true,
             },
@@ -39,6 +86,7 @@ return {
                     Snacks.toggle.diagnostics():map("<leader>ud")
                     Snacks.toggle.line_number():map("<leader>ul")
                     Snacks.toggle.inlay_hints():map("<leader>uh")
+                    Snacks.toggle.indent():map("<leader>ug")
                     Snacks.toggle.zen():map("<leader>uz")
                     Snacks.toggle.zoom():map("<leader>uZ")
                 end,
