@@ -17,7 +17,7 @@ return {
                 },
                 scope = {
                     enabled = true,
-                    char = "│",
+                    char = "┃",
                     underline = false,
                 },
                 animate = {
