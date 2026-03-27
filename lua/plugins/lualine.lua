@@ -12,7 +12,8 @@ return {
 
         -- Get current colorscheme to set as theme
         -- local current_theme = vim.g.colors_name or "auto"
-        local tc = require("tokyocity.groups.plugins.lualine")
+        local ok, tc = pcall(require, "tokyocity.groups.plugins.lualine")
+        local sep = ok and tc or {}
         return {
             options = {
                 icons_enabled = true,
@@ -30,8 +31,8 @@ return {
                 -- Separators
                 -- component_separators = { left = "░", right = "░" },
                 -- section_separators = { left = "▓▒░", right = "░▒▓" },
-                section_separators = tc.section_separators,
-                component_separators = tc.component_separators,
+                section_separators   = sep.section_separators,
+                component_separators = sep.component_separators,
             },
             sections = {
                 lualine_a = { { "mode", icon = "" } },

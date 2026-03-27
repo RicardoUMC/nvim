@@ -34,6 +34,9 @@ require("lazy").setup({
     spec = {
         { import = "plugins" },
     },
+    dev = {
+        path = "C:\\Users\\rumc-",
+    },
     -- colorscheme that will be used when installing plugins.
     install = { colorscheme = { "habamax" } },
     -- automatically check for plugin updates

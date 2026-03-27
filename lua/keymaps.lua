@@ -49,6 +49,14 @@ vim.keymap.set("n", "<leader>t", function()
     require("config.color").apply()
 end, { desc = "Toggle transparent background" })
 
+vim.keymap.set("n", "<leader>TR", function()
+    for k in pairs(package.loaded) do
+        if k:match("^tokyocity") then package.loaded[k] = nil end
+    end
+    vim.cmd("colorscheme tokyocity")
+    vim.notify("tokyocity reloaded", vim.log.levels.INFO)
+end, { desc = "Reload tokyocity colorscheme" })
+
 vim.api.nvim_set_keymap("n", "<C-s>", ":lua SaveFile()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-s><C-s>", ":lua SaveAllFiles()<CR>", { noremap = true, silent = true })
 
