@@ -5,7 +5,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     if vim.v.shell_error ~= 0 then
         vim.api.nvim_echo({
             { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out, "WarningMsg" },
+            { out,                            "WarningMsg" },
             { "\nPress any key to exit..." },
         }, true, {})
         vim.fn.getchar()
@@ -35,7 +35,7 @@ require("lazy").setup({
         { import = "plugins" },
     },
     dev = {
-        path = "C:\\Users\\rumc-",
+        path = "~",
     },
     -- colorscheme that will be used when installing plugins.
     install = { colorscheme = { "habamax" } },
