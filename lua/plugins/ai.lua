@@ -5,7 +5,7 @@ return {
         -- ⚠️ must add this setting! ! !
         branch = "main",
         build = vim.fn.has("win32") ~= 0
-                and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+            and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
             or "make",
         event = "VeryLazy",
         version = false, -- Never set this value to "*"! Never!
@@ -20,7 +20,7 @@ return {
                 auto_approve_tool_permissions = false,
                 confirmation_ui_style = "popup", -- u otro estilo que muestre confirmación
                 auto_focus_sidebar = true,
-                auto_suggestions = false, -- Experimental stage
+                auto_suggestions = false,        -- Experimental stage
                 auto_suggestions_respect_ignore = true,
                 auto_set_highlight_group = true,
                 auto_set_keymaps = true,
@@ -35,7 +35,7 @@ return {
             providers = {
                 copilot = {
                     -- endpoint = "https://api.githubcopilot.com",
-                    model = "gpt-4",
+                    model = "gpt-5.2",
                 },
                 claude = {
                     endpoint = "https://api.anthropic.com",
@@ -61,14 +61,14 @@ return {
             "nvim-lua/plenary.nvim",
             "MunifTanjim/nui.nvim",
             --- The below dependencies are optional,
-            "nvim-mini/mini.pick", -- for file_selector provider mini.pick
+            "nvim-mini/mini.pick",           -- for file_selector provider mini.pick
             "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-            "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-            "ibhagwan/fzf-lua", -- for file_selector provider fzf
-            "stevearc/dressing.nvim", -- for input provider dressing
-            "folke/snacks.nvim", -- for input provider snacks
-            "nvim-mini/mini.icons", -- or nvim-tree/nvim-web-devicons
-            "zbirenbaum/copilot.lua", -- for providers='copilot'
+            "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
+            "ibhagwan/fzf-lua",              -- for file_selector provider fzf
+            "stevearc/dressing.nvim",        -- for input provider dressing
+            "folke/snacks.nvim",             -- for input provider snacks
+            "nvim-mini/mini.icons",          -- or nvim-tree/nvim-web-devicons
+            "zbirenbaum/copilot.lua",        -- for providers='copilot'
             {
                 -- support for image pasting
                 "HakonHarnes/img-clip.nvim",
