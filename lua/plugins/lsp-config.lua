@@ -57,7 +57,7 @@ return {
     {
         "mason-org/mason-lspconfig.nvim",
         opts = {
-            ensure_installed = { "lua_ls", "clangd" },
+            ensure_installed = { "lua_ls", "clangd", "stylua" },
             automatic_installation = true,
         },
         dependencies = {
