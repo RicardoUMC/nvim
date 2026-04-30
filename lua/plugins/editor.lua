@@ -53,8 +53,8 @@ return {
                         lang = "lua",
                         view = "mini",
                     },
-                    help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
-                    input = { view = "cmdline_input", icon = "󰥻 " }, -- Used by input()
+                    help = { pattern = "^:%s*he?l?p?%s+", icon = "?" },
+                    input = { view = "cmdline_input", icon = "> " }, -- Used by input()
                 },
                 presets = {
                     bottom_search = true,
@@ -107,13 +107,16 @@ return {
             preset = "helix",
             spec = {
                 { "<leader>u", group = "ui" },
-                { "<leader>s", group = "search" },
+                { "<leader>s", group = "search/sessions" },
                 { "<leader>f", group = "file" },
                 { "<leader>b", group = "buffer" },
                 { "<leader>g", group = "git" },
                 { "<leader>d", group = "debug" },
                 { "<leader>h", group = "harpoon" },
                 { "<leader>R", group = "rest" },
+                { "<leader>o", group = "obsidian" },
+                { "<leader>O", group = "outline" },
+                { "<leader>k", group = "kairos (opencode)" },
             },
             delay = function()
                 return 0
