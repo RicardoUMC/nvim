@@ -3,21 +3,24 @@ return {
         -- Make sure to set this up properly if you have lazy=true
         "MeanderingProgrammer/render-markdown.nvim",
         dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.icons" },
+        ft = { "markdown", "Avante", "copilot-chat", "opencode_output" },
         opts = {
+            anti_conceal = { enabled = false },
             render_modes = { "n", "c", "t" },
-            file_types = { "markdown", "Avante" },
+            file_types = { "markdown", "Avante", "opencode_output" },
             heading = {
                 enabled = true,
-                sign = true,
-                style = "full",
-                icons = { "① ", "② ", "③ ", "④ ", "⑤ ", "⑥ " },
-                left_pad = 0,
+                sign = false,
+                -- Nerd Font header icon options:
+                -- icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
+                -- icons = { "󰉫 ", "󰉬 ", "󰉭 ", "󰉮 ", "󰉯 ", "󰉰 " },
+                -- icons = { "󰎦 ", "󰎩 ", "󰎬 ", "󰎮 ", "󰎱 ", "󰎳 " },
+                icons = { "󰼏 ", "󰼐 ", "󰼑 ", "󰼒 ", "󰼓 ", "󰼔 " },
             },
             bullet = {
                 enabled = true,
-                icons = { "•", "◦", "▪", "▫" },
-                right_pad = 1,
-                highlight = "render-markdownBullet",
+                -- icons = { "󰧞", "󰄱", "󰝦", "󰐾" },
+                highlight = "RenderMarkdownBullet",
             },
         },
     },

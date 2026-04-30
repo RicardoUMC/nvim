@@ -22,19 +22,15 @@ return {
             template = "daily",
         },
         mappings = {
-            ["<leader>of"] = {
+            ["gl"] = {
                 action = function()
                     return require("obsidian").util.gf_passthrough()
                 end,
                 opts = { noremap = false, expr = true, buffer = true, desc = "Follow Obsidian link" },
             },
-            ["<leader>od"] = {
+            ["ok"] = {
                 action = "<cmd>ObsidianToggleCheckbox<CR>",
                 opts = { buffer = true, desc = "Toggle checkbox in current line" },
-            },
-            ["<leader>on"] = {
-                action = "<cmd>ObsidianNew<CR>",
-                opts = { buffer = true, desc = "Create new note" },
             },
             ["<leader>oit"] = {
                 action = "<cmd>ObsidianTemplate<CR>",
@@ -66,5 +62,31 @@ return {
             date_format = "%Y-%m-%d-%a",
             time_format = "%H:%M",
         },
+        -- UI handled by render-markdown.nvim — disabling to avoid conflicts
+        ui = { enable = false },
     },
+    config = function(_, opts)
+        require("obsidian").setup(opts)
+
+        local obsidian_path = vim.fn.expand("~/obsidian")
+
+        -- Helper: runs a command ensuring we're in the obsidian workspace,
+        -- regardless of the current session or working directory.
+        local function obsidian_cmd(cmd)
+            return function()
+                local cwd = vim.fn.getcwd()
+                if not vim.startswith(vim.fn.fnamemodify(cwd, ":p"), vim.fn.fnamemodify(obsidian_path, ":p")) then
+                    vim.cmd("cd " .. obsidian_path)
+                end
+                vim.cmd(cmd)
+            end
+        end
+
+        -- Global keymaps — work from any session or directory
+        vim.keymap.set("n", "<leader>on", obsidian_cmd("ObsidianNew"), { desc = "Obsidian: new note" })
+        vim.keymap.set("n", "<leader>os", obsidian_cmd("ObsidianSearch"), { desc = "Obsidian: search notes" })
+        vim.keymap.set("n", "<leader>oq", obsidian_cmd("ObsidianQuickSwitch"), { desc = "Obsidian: quick switch" })
+        vim.keymap.set("n", "<leader>ob", obsidian_cmd("ObsidianBacklinks"), { desc = "Obsidian: backlinks" })
+        vim.keymap.set("n", "<leader>ot", obsidian_cmd("ObsidianToday"), { desc = "Obsidian: today's daily note" })
+    end,
 }
