@@ -137,7 +137,7 @@ return {
                         severity_sort = true,
                     })
 
-                    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+                    local capabilities = require("blink.cmp").get_lsp_capabilities()
                     local util = require("lspconfig.util")
 
                     local default_probe_dir = get_probe_dir(vim.fn.getcwd())
