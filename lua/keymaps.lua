@@ -16,6 +16,12 @@ vim.keymap.set("v", "<Down>", "<nop>")
 vim.keymap.set("v", "<Left>", "<nop>")
 vim.keymap.set("v", "<Right>", "<nop>")
 
+-- Clear search highlights
+vim.keymap.set("n", "<C-c>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
+
+-- Exit terminal mode
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
 -- Personalize mappings
 vim.keymap.set("n", "<C-k>", "wincmd k<CR>")
 vim.keymap.set("n", "<C-j>", "wincmd j<CR>")
@@ -51,7 +57,9 @@ end, { desc = "Toggle transparent background" })
 
 vim.keymap.set("n", "<leader>TR", function()
     for k in pairs(package.loaded) do
-        if k:match("^tokyocity") then package.loaded[k] = nil end
+        if k:match("^tokyocity") then
+            package.loaded[k] = nil
+        end
     end
     vim.cmd("colorscheme tokyocity")
     vim.notify("tokyocity reloaded", vim.log.levels.INFO)
@@ -80,6 +88,8 @@ vim.keymap.set(
     { desc = "Replace all ocurrences of selected text" }
 )
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Change file permissions to executable" })
+
+vim.keymap.set("n", "<leader>ck", ":lua CheckKeymapConflicts()<CR>", { desc = "Check keymap conflicts" })
 
 function CheckKeymapConflicts()
     local modes = { "n", "i", "v", "x", "t" } -- Modes: normal, insert, visual, select, terminal

@@ -9,7 +9,20 @@ return {
         null_ls.setup({
             sources = {
                 null_ls.builtins.formatting.stylua.with({
-                    extra_args = { "--indent-type", "Spaces", "--indent-width", "4" },
+                    extra_args = {
+                        "--indent-type",
+                        "Spaces",
+                        "--indent-width",
+                        "4",
+                        "--line-endings",
+                        "Unix",
+                        "--quote-style",
+                        "AutoPreferDouble",
+                        "--call-parentheses",
+                        "Always",
+                        "--collapse-simple-statement",
+                        "Never",
+                    },
                 }),
                 null_ls.builtins.formatting.prettierd,
                 null_ls.builtins.formatting.gofmt,
