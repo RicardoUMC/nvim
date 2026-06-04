@@ -138,12 +138,13 @@ return {
         "sudo-tee/opencode.nvim",
         config = function()
             require("opencode").setup({
-                default_mode = "sdd-orchestrator",
+                default_mode = "gentle-orchestrator",
                 keymap_prefix = "<leader>k",
                 quick_chat = {
-                    default_agent = "sdd-orchestrator",
+                    default_agent = "gentle-orchestrator",
                 },
                 ui = {
+                    window_width = 1.0, -- Width as percentage of editor width
                     output = {
                         tools = {
                             show_reasoning_output = false,
@@ -167,7 +168,7 @@ return {
                         show_full_path = true,
                     },
                     files = {
-                        enabled = true,
+                        enabled = false,
                         show_full_path = true,
                     },
                     selection = {
