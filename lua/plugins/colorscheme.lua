@@ -1,7 +1,7 @@
 vim.opt.termguicolors = true
 
 return {
-    { "RicardoUMC/tokyocity.nvim", dev = true, lazy = false, priority = 1000 },
+    { "RicardoUMC/tokyocity.nvim", dev = true, lazy = false, priority = 1000, opts = { transparent = true } },
     {
         "vague-theme/vague.nvim",
         config = function()
