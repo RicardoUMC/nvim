@@ -183,12 +183,12 @@ return {
     },
 
     -- add icons
-    {
-        "saghen/blink.cmp",
-        opts = function(_, opts)
-            opts.appearance = opts.appearance or {}
-            -- Aquí puedes definir tus propios íconos para los tipos de autocompletado si lo deseas.
-            -- opts.appearance.kind_icons = vim.tbl_extend("force", opts.appearance.kind_icons or {}, require('tus_modulos.icons').kinds or {})
-        end,
-    },
+    -- {
+    --     "saghen/blink.cmp",
+    --     opts = function(_, opts)
+    --         opts.appearance = opts.appearance or {}
+    --         -- Aquí puedes definir tus propios íconos para los tipos de autocompletado si lo deseas.
+    --         -- opts.appearance.kind_icons = vim.tbl_extend("force", opts.appearance.kind_icons or {}, require('tus_modulos.icons').kinds or {})
+    --     end,
+    -- },
 }
