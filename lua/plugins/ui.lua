@@ -75,7 +75,7 @@ return {
     {
         "sphamba/smear-cursor.nvim",
         opts = {
-            time_interval = 5,
+            time_interval = 2,
             never_draw_over_target = true,
             stiffness = 0.8,
             trailing_stiffness = 0.5,
