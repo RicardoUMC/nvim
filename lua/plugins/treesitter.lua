@@ -4,6 +4,10 @@ return {
         branch = "master",
         build = ":TSUpdate",
         config = function()
+            -- Prefer GitHub tarballs over Git clones on Linux/macOS. This avoids
+            -- stale or incomplete Git remotes in parser download directories.
+            require("nvim-treesitter.install").prefer_git = false
+
             require("nvim-treesitter.configs").setup({
                 -- A list of parser names, or "all" (the listed parsers MUST always be installed)
                 ensure_installed = {
@@ -21,6 +25,7 @@ return {
                 },
                 sync_install = false,
 
+                -- Install missing parsers when entering a supported filetype.
                 auto_install = true,
 
                 highlight = {
