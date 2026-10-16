@@ -23,10 +23,8 @@ vim.keymap.set("n", "<C-c>", "<cmd>nohlsearch<CR>", { desc = "Clear search highl
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Personalize mappings
-vim.keymap.set("n", "<C-k>", "wincmd k<CR>")
-vim.keymap.set("n", "<C-j>", "wincmd j<CR>")
-vim.keymap.set("n", "<C-h>", "wincmd h<CR>")
-vim.keymap.set("n", "<C-l>", "wincmd l<CR>")
+-- Ctrl+h/j/k/l is owned by smart-splits.nvim so the same keys can move
+-- across Neovim splits and WezTerm panes.
 vim.keymap.set("n", "<A-a>", "ggVG")
 
 -- Suggested mappings
